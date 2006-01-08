@@ -118,18 +118,20 @@ snakeparser.o snakeparser.o: snakeparser.cpp snakeparser.h \
   /usr/include/kde/kdelibs_export.h /usr/include/kde/kdemacros.h \
   /usr/share/qt3/include/qglobal.h /usr/include/kde/kio/global.h \
   /usr/share/qt3/include/qdatastream.h /usr/share/qt3/include/qdatetime.h \
-  /usr/share/qt3/include/qmap.h /usr/include/c++/3.4/iostream \
-  /usr/share/qt3/include/qmessagebox.h /usr/share/qt3/include/qdialog.h \
-  /usr/share/qt3/include/qwidget.h /usr/share/qt3/include/qpaintdevice.h \
-  /usr/share/qt3/include/qpalette.h /usr/share/qt3/include/qcolor.h \
-  /usr/share/qt3/include/qstringlist.h /usr/share/qt3/include/qbrush.h \
+  /usr/share/qt3/include/qmap.h snakelogindialog.h ./login_dialog.h \
+  /usr/share/qt3/include/qvariant.h /usr/share/qt3/include/qstringlist.h \
+  /usr/share/qt3/include/qdialog.h /usr/share/qt3/include/qwidget.h \
+  /usr/share/qt3/include/qpaintdevice.h /usr/share/qt3/include/qpalette.h \
+  /usr/share/qt3/include/qcolor.h /usr/share/qt3/include/qbrush.h \
   /usr/share/qt3/include/qfont.h /usr/share/qt3/include/qfontmetrics.h \
   /usr/share/qt3/include/qfontinfo.h /usr/share/qt3/include/qsizepolicy.h \
-  /usr/share/qt3/include/qregexp.h /usr/include/kde/kio/scheduler.h \
-  /usr/share/qt3/include/qtimer.h /usr/share/qt3/include/qptrdict.h \
-  /usr/share/qt3/include/qgdict.h /usr/include/kde/dcopobject.h \
-  /usr/include/kde/kdatastream.h /usr/include/kde/kapplication.h \
-  /usr/include/kde/kdeversion.h /usr/share/qt3/include/qapplication.h \
+  /usr/include/c++/3.4/iostream /usr/share/qt3/include/qmessagebox.h \
+  /usr/share/qt3/include/qdialog.h /usr/share/qt3/include/qregexp.h \
+  /usr/include/kde/kio/scheduler.h /usr/share/qt3/include/qtimer.h \
+  /usr/share/qt3/include/qptrdict.h /usr/share/qt3/include/qgdict.h \
+  /usr/include/kde/dcopobject.h /usr/include/kde/kdatastream.h \
+  /usr/include/kde/kapplication.h /usr/include/kde/kdeversion.h \
+  /usr/share/qt3/include/qapplication.h \
   /usr/share/qt3/include/qdesktopwidget.h \
   /usr/share/qt3/include/qasciidict.h \
   /usr/share/qt3/include/qtranslator.h /usr/share/qt3/include/qpixmap.h \
@@ -527,9 +529,13 @@ snakeparser.h:
 
 /usr/share/qt3/include/qmap.h:
 
-/usr/include/c++/3.4/iostream:
+snakelogindialog.h:
 
-/usr/share/qt3/include/qmessagebox.h:
+./login_dialog.h:
+
+/usr/share/qt3/include/qvariant.h:
+
+/usr/share/qt3/include/qstringlist.h:
 
 /usr/share/qt3/include/qdialog.h:
 
@@ -541,8 +547,6 @@ snakeparser.h:
 
 /usr/share/qt3/include/qcolor.h:
 
-/usr/share/qt3/include/qstringlist.h:
-
 /usr/share/qt3/include/qbrush.h:
 
 /usr/share/qt3/include/qfont.h:
@@ -552,6 +556,12 @@ snakeparser.h:
 /usr/share/qt3/include/qfontinfo.h:
 
 /usr/share/qt3/include/qsizepolicy.h:
+
+/usr/include/c++/3.4/iostream:
+
+/usr/share/qt3/include/qmessagebox.h:
+
+/usr/share/qt3/include/qdialog.h:
 
 /usr/share/qt3/include/qregexp.h:
 

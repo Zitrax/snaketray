@@ -37,13 +37,12 @@ public:
 private slots:
 	void jobResult( KIO::Job* job );
 	void jobData( KIO::Job* job, const QByteArray& data );
+	void login(const QString& user, const QString& pass);
 	
 private:
 	void parseData();
 	void login();
 	QString m_snakepage;
-	QString m_username;
-	QString m_password;
 	bool m_login_tried;
 signals:
        /** 

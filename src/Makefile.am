@@ -2,7 +2,7 @@
 INCLUDES = $(all_includes)
 
 # these are the headers for your project
-noinst_HEADERS = snaketray.h snakeparser.h
+noinst_HEADERS = snaketray.h snakeparser.h snakelogindialog.h
 
 # let automoc handle all of the meta source files (moc)
 METASOURCES = AUTO
@@ -20,7 +20,8 @@ KDE_ICON = snaketray
 bin_PROGRAMS = snaketray
 
 # the application source, library search path, and link libraries
-snaketray_SOURCES = main.cpp snaketray.cpp snakeparser.cpp
+snaketray_SOURCES = main.cpp snaketray.cpp snakeparser.cpp login_dialog.ui \
+	snakelogindialog.cpp
 snaketray_LDFLAGS = $(KDE_RPATH) $(all_libraries)
 snaketray_LDADD = $(LIB_KDEUI)
 

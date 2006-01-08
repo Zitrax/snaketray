@@ -20,6 +20,8 @@
 
 #include "snakeparser.h"
 
+#include "snakelogindialog.h"
+
 #include <iostream>
 
 #include <qmessagebox.h>
@@ -31,12 +33,9 @@
 using namespace std;
 
 SnakeParser::SnakeParser(QObject* parent, const char* name) 
-	: QObject(parent,name), 
-	m_login_tried(false)	
+	: QObject(parent,name), m_login_tried(false)	
 {
 	qDebug("Creating SnakeParser");
-	m_username = "danielb@opera.com";
-	m_password = "xisccb";
 }
 
 SnakeParser::~SnakeParser()
@@ -125,17 +124,19 @@ void SnakeParser::parseData()
 	}
 }
 
+void SnakeParser::login(const QString& user, const QString& pass)
+{
+	QString login_url("http://www.snakenetmetalradio.com/heavymetallounge/login.asp");
+	login_url = login_url + "?email=" + user + "&password=" + pass;
+	qDebug("Will login using - " + login_url);
+	m_login_tried = true;
+	startParsing(login_url);
+}
+
 void SnakeParser::login()
 {
-	int ans = QMessageBox::warning( 0, tr("Not logged in"),tr("Do you want to login as user: ") + m_username + "?", QMessageBox::Yes, QMessageBox::No, 0 );
-	if( ans == QMessageBox::Yes )
-	{
-		QString login_url("http://www.snakenetmetalradio.com/heavymetallounge/login.asp");
-		login_url = login_url + "?email=" + m_username + "&password=" + m_password;
-		qDebug("Will login using - " + login_url);
-		m_login_tried = true;
-		startParsing(login_url);
-	}
-	else
-		KApplication::exit(0);
+	SnakeLoginDialog dialog(0);
+	connect(&dialog, SIGNAL(login(const QString&, const QString& )),
+		this,      SLOT(login(const QString&, const QString& )));
+	dialog.exec();
 }
