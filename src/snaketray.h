@@ -34,6 +34,13 @@
  * @short Application Main Window
  * @author Daniel Bengtsson <daniel@bengtssons.info>
  * @version 0.1
+ *
+ * This is the class that shows up in the tray as a small icon.
+ * IT will be filled with the remaining minutes that will count
+ * down. If 0 minutes are left, 'OK' will be shown.
+ *
+ * You should only have to create an object of this class to start
+ * and things will be handled from there.
  */
 class SnakeTray : public KSystemTray
 {

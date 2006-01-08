@@ -25,6 +25,10 @@
  
 #include <kio/job.h>
 
+/**
+ * This class will handle the retrieving of the requestpage
+ * and login if necessary.
+ */
 class SnakeParser : public QObject
 {
 Q_OBJECT
@@ -32,17 +36,46 @@ public:
 	SnakeParser(QObject* parent, const char* name);
 	~SnakeParser();
 	
+	/**
+	 * Will start retrieving the url
+	 * The slots jobResult and jobData will be called
+	 * during the transfer.
+	 * @param url The url to retrieve
+	 */
 	void startParsing(const QString& url);
 	
 private slots:
+	/**
+	 * Will check for errors of the job
+	 */
 	void jobResult( KIO::Job* job );
+	/**
+	 * Chunks of data arrive in this slot. When data->size() == 0
+	 * we are done and can start parse the data using
+	 * parseData()
+	 */
 	void jobData( KIO::Job* job, const QByteArray& data );
+	/**
+	 * Will try to login to snakenet using...
+	 * @param user The username
+	 * @param pass The password
+	 */
 	void login(const QString& user, const QString& pass);
 	
 private:
+	/**
+	 * Will parse the data that arrived in the jobData() slot.
+	 * If it is the requestpage the remaining minutes will be parsed.
+	 */
 	void parseData();
+	/**
+	 * Will popup a dialog with fields for username and passwors, 
+	 * where you are asked to login.
+	 */
 	void login();
+	/// The received data. (Hopefully the requestpage)
 	QString m_snakepage;
+	/// Keeps track of if we just tried to login
 	bool m_login_tried;
 signals:
        /** 
@@ -51,6 +84,9 @@ signals:
 	*/
 	void timeLeftReceived(int);
 
+	/**
+	 * Emitted after we have tried to login.
+	 */
 	void loginTried();
 };
  

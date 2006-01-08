@@ -15,8 +15,11 @@
 #include <login_dialog.h>
 
 /**
-@author Daniel Bengtsson
-*/
+ * @author Daniel Bengtsson
+ *
+ * This is a logindialog consisting of a username field
+ * and a password field.
+ */
 class SnakeLoginDialog : public LoginDialog
 {
 Q_OBJECT
