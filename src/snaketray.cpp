@@ -23,6 +23,7 @@
 #include <qlabel.h>
 #include <qtimer.h>
 #include <qfont.h>
+#include <qpixmap.h>
 #include <klocale.h>
 
 SnakeTray::SnakeTray()
@@ -35,7 +36,7 @@ m_finished(false)
 {
 	qWarning( "Starting SnakeTray" );
 	m_progress->resize( 24,24 );
-	QFont small("Helvetica",6);
+	QFont small("Helvetica",8);
 	m_progress->setFont( small );
 	//m_progress->setPaletteForegroundColor( QColor("red") );
 	
@@ -70,7 +71,7 @@ void SnakeTray::updateTimer(int minutes)
 	}
 	else if( minutes == 0 )
 	{
-		m_progress->setText("OK");
+		readyToRequest();
 	}
 	else if( (minutes == -1) && (m_received_minutes > 0) )
 	{
@@ -81,8 +82,16 @@ void SnakeTray::updateTimer(int minutes)
 		if( remaining > 0 )
 			m_progress->setText( QString::number(minutes) + ":" + QString::number(seconds) );
 		else
-			m_progress->setText("OK");
+			readyToRequest();
 	}
+}
+
+void SnakeTray::readyToRequest()
+{
+	QPixmap ico("snakenet.png");
+	qDebug("Ico width = %i", ico.width() );
+	m_progress->hide();
+	setPixmap( ico );
 }
 
 #include "snaketray.moc"

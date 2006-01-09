@@ -9,20 +9,21 @@ snaketray.o snaketray.o: snaketray.cpp snaketray.h ../config.h \
   /usr/share/qt3/include/qglobal.h /usr/share/qt3/include/qwinexport.h \
   /usr/include/string.h /usr/include/features.h /usr/include/sys/cdefs.h \
   /usr/include/gnu/stubs.h \
-  /usr/lib/gcc/i486-linux-gnu/3.4.5/include/stddef.h \
-  /usr/include/xlocale.h \
-  /usr/lib/gcc/i486-linux-gnu/3.4.5/include/limits.h \
-  /usr/lib/gcc/i486-linux-gnu/3.4.5/include/syslimits.h \
+  /usr/lib/gcc/i486-linux-gnu/4.0.2/include/stddef.h \
+  /usr/include/xlocale.h /usr/share/qt3/include/qwinexport.h \
+  /usr/lib/gcc/i486-linux-gnu/4.0.2/include/limits.h \
+  /usr/lib/gcc/i486-linux-gnu/4.0.2/include/syslimits.h \
   /usr/include/limits.h /usr/include/bits/posix1_lim.h \
   /usr/include/bits/local_lim.h /usr/include/linux/limits.h \
   /usr/include/bits/posix2_lim.h /usr/include/bits/xopen_lim.h \
-  /usr/include/bits/stdio_lim.h /usr/include/c++/3.4/string \
-  /usr/include/c++/3.4/i486-linux-gnu/bits/c++config.h \
-  /usr/include/c++/3.4/i486-linux-gnu/bits/os_defines.h \
-  /usr/include/c++/3.4/bits/stringfwd.h \
-  /usr/include/c++/3.4/bits/char_traits.h /usr/include/c++/3.4/cstring \
-  /usr/include/c++/3.4/cstddef /usr/include/c++/3.4/bits/stl_algobase.h \
-  /usr/include/c++/3.4/climits /usr/include/c++/3.4/cstdlib \
+  /usr/include/bits/stdio_lim.h /usr/include/c++/4.0.2/string \
+  /usr/include/c++/4.0.2/i486-linux-gnu/bits/c++config.h \
+  /usr/include/c++/4.0.2/i486-linux-gnu/bits/os_defines.h \
+  /usr/include/c++/4.0.2/bits/stringfwd.h \
+  /usr/include/c++/4.0.2/bits/char_traits.h \
+  /usr/include/c++/4.0.2/cstring /usr/include/c++/4.0.2/cstddef \
+  /usr/include/c++/4.0.2/bits/stl_algobase.h \
+  /usr/include/c++/4.0.2/climits /usr/include/c++/4.0.2/cstdlib \
   /usr/include/stdlib.h /usr/include/bits/waitflags.h \
   /usr/include/bits/waitstatus.h /usr/include/endian.h \
   /usr/include/bits/endian.h /usr/include/sys/types.h \
@@ -32,112 +33,148 @@ snaketray.o snaketray.o: snaketray.cpp snaketray.h ../config.h \
   /usr/include/bits/sigset.h /usr/include/bits/time.h \
   /usr/include/sys/sysmacros.h /usr/include/bits/pthreadtypes.h \
   /usr/include/bits/sched.h /usr/include/alloca.h \
-  /usr/include/c++/3.4/new /usr/include/c++/3.4/exception \
-  /usr/include/c++/3.4/iosfwd \
-  /usr/include/c++/3.4/i486-linux-gnu/bits/c++locale.h \
-  /usr/include/c++/3.4/cstdio /usr/include/stdio.h /usr/include/libio.h \
+  /usr/include/c++/4.0.2/iosfwd \
+  /usr/include/c++/4.0.2/i486-linux-gnu/bits/c++locale.h \
+  /usr/include/c++/4.0.2/cstdio /usr/include/stdio.h /usr/include/libio.h \
   /usr/include/_G_config.h /usr/include/wchar.h /usr/include/bits/wchar.h \
-  /usr/include/gconv.h /usr/lib/gcc/i486-linux-gnu/3.4.5/include/stdarg.h \
+  /usr/include/gconv.h /usr/lib/gcc/i486-linux-gnu/4.0.2/include/stdarg.h \
   /usr/include/bits/sys_errlist.h /usr/include/bits/stdio.h \
-  /usr/include/c++/3.4/clocale /usr/include/locale.h \
+  /usr/include/c++/4.0.2/clocale /usr/include/locale.h \
   /usr/include/bits/locale.h /usr/include/langinfo.h \
   /usr/include/nl_types.h /usr/include/iconv.h /usr/include/libintl.h \
-  /usr/include/c++/3.4/i486-linux-gnu/bits/c++io.h \
-  /usr/include/c++/3.4/i486-linux-gnu/bits/gthr.h \
-  /usr/include/c++/3.4/i486-linux-gnu/bits/gthr-default.h \
+  /usr/include/c++/4.0.2/i486-linux-gnu/bits/c++io.h \
+  /usr/include/c++/4.0.2/i486-linux-gnu/bits/gthr.h \
+  /usr/include/c++/4.0.2/i486-linux-gnu/bits/gthr-default.h \
   /usr/include/pthread.h /usr/include/sched.h /usr/include/signal.h \
   /usr/include/bits/initspin.h /usr/include/bits/sigthread.h \
   /usr/include/unistd.h /usr/include/bits/posix_opt.h \
   /usr/include/bits/environments.h /usr/include/bits/confname.h \
-  /usr/include/getopt.h /usr/include/c++/3.4/cctype /usr/include/ctype.h \
-  /usr/include/c++/3.4/bits/postypes.h /usr/include/c++/3.4/cwchar \
-  /usr/include/c++/3.4/ctime /usr/include/stdint.h \
-  /usr/include/c++/3.4/bits/functexcept.h \
-  /usr/include/c++/3.4/exception_defines.h \
-  /usr/include/c++/3.4/bits/stl_pair.h \
-  /usr/include/c++/3.4/bits/type_traits.h \
-  /usr/include/c++/3.4/bits/stl_iterator_base_types.h \
-  /usr/include/c++/3.4/bits/stl_iterator_base_funcs.h \
-  /usr/include/c++/3.4/bits/concept_check.h \
-  /usr/include/c++/3.4/bits/stl_iterator.h \
-  /usr/include/c++/3.4/debug/debug.h /usr/include/c++/3.4/cassert \
-  /usr/include/assert.h /usr/include/c++/3.4/memory \
-  /usr/include/c++/3.4/bits/allocator.h \
-  /usr/include/c++/3.4/i486-linux-gnu/bits/c++allocator.h \
-  /usr/include/c++/3.4/ext/mt_allocator.h \
-  /usr/include/c++/3.4/bits/atomicity.h \
-  /usr/include/c++/3.4/i486-linux-gnu/bits/atomic_word.h \
-  /usr/include/c++/3.4/bits/stl_construct.h \
-  /usr/include/c++/3.4/bits/stl_uninitialized.h \
-  /usr/include/c++/3.4/bits/stl_raw_storage_iter.h \
-  /usr/include/c++/3.4/limits /usr/include/c++/3.4/bits/stl_function.h \
-  /usr/include/c++/3.4/bits/basic_string.h /usr/include/c++/3.4/algorithm \
-  /usr/include/c++/3.4/bits/stl_algo.h \
-  /usr/include/c++/3.4/bits/stl_heap.h \
-  /usr/include/c++/3.4/bits/stl_tempbuf.h \
-  /usr/include/c++/3.4/bits/basic_string.tcc \
+  /usr/include/getopt.h /usr/include/c++/4.0.2/cctype \
+  /usr/include/ctype.h /usr/include/c++/4.0.2/bits/postypes.h \
+  /usr/include/c++/4.0.2/cwchar /usr/include/c++/4.0.2/ctime \
+  /usr/include/stdint.h /usr/include/c++/4.0.2/bits/functexcept.h \
+  /usr/include/c++/4.0.2/exception_defines.h \
+  /usr/include/c++/4.0.2/bits/stl_pair.h \
+  /usr/include/c++/4.0.2/bits/cpp_type_traits.h \
+  /usr/include/c++/4.0.2/bits/stl_iterator_base_types.h \
+  /usr/include/c++/4.0.2/bits/stl_iterator_base_funcs.h \
+  /usr/include/c++/4.0.2/bits/concept_check.h \
+  /usr/include/c++/4.0.2/bits/stl_iterator.h \
+  /usr/include/c++/4.0.2/debug/debug.h /usr/include/c++/4.0.2/cassert \
+  /usr/include/assert.h /usr/include/c++/4.0.2/memory \
+  /usr/include/c++/4.0.2/bits/allocator.h \
+  /usr/include/c++/4.0.2/i486-linux-gnu/bits/c++allocator.h \
+  /usr/include/c++/4.0.2/ext/mt_allocator.h /usr/include/c++/4.0.2/new \
+  /usr/include/c++/4.0.2/exception \
+  /usr/include/c++/4.0.2/bits/atomicity.h \
+  /usr/include/c++/4.0.2/i486-linux-gnu/bits/atomic_word.h \
+  /usr/include/c++/4.0.2/bits/stl_construct.h \
+  /usr/include/c++/4.0.2/bits/stl_uninitialized.h \
+  /usr/include/c++/4.0.2/bits/stl_raw_storage_iter.h \
+  /usr/include/c++/4.0.2/limits \
+  /usr/include/c++/4.0.2/bits/stl_function.h \
+  /usr/include/c++/4.0.2/bits/basic_string.h \
+  /usr/include/c++/4.0.2/algorithm /usr/include/c++/4.0.2/bits/stl_algo.h \
+  /usr/include/c++/4.0.2/bits/stl_heap.h \
+  /usr/include/c++/4.0.2/bits/stl_tempbuf.h \
+  /usr/include/c++/4.0.2/bits/basic_string.tcc \
+  /usr/share/qt3/include/qwinexport.h /usr/include/kde/kdelibs_export.h \
   /usr/share/qt3/include/qlabel.h /usr/share/qt3/include/qframe.h \
   /usr/share/qt3/include/qwidget.h /usr/share/qt3/include/qwindowdefs.h \
-  /usr/share/qt3/include/qobjectdefs.h /usr/share/qt3/include/qstring.h \
-  /usr/share/qt3/include/qnamespace.h /usr/share/qt3/include/qobject.h \
-  /usr/share/qt3/include/qevent.h /usr/share/qt3/include/qregion.h \
+  /usr/share/qt3/include/qobjectdefs.h /usr/share/qt3/include/qglobal.h \
+  /usr/share/qt3/include/qstring.h /usr/share/qt3/include/qnamespace.h \
+  /usr/share/qt3/include/qglobal.h /usr/share/qt3/include/qobject.h \
+  /usr/share/qt3/include/qobjectdefs.h \
+  /usr/share/qt3/include/qwindowdefs.h /usr/share/qt3/include/qstring.h \
+  /usr/share/qt3/include/qevent.h /usr/share/qt3/include/qwindowdefs.h \
+  /usr/share/qt3/include/qregion.h /usr/share/qt3/include/qshared.h \
   /usr/share/qt3/include/qrect.h /usr/share/qt3/include/qsize.h \
-  /usr/share/qt3/include/qpoint.h /usr/share/qt3/include/qmime.h \
-  /usr/share/qt3/include/qmap.h /usr/share/qt3/include/qdatastream.h \
-  /usr/share/qt3/include/qiodevice.h /usr/share/qt3/include/qpair.h \
+  /usr/share/qt3/include/qpoint.h /usr/share/qt3/include/qwindowdefs.h \
+  /usr/share/qt3/include/qwinexport.h /usr/share/qt3/include/qwinexport.h \
+  /usr/share/qt3/include/qnamespace.h /usr/share/qt3/include/qmime.h \
+  /usr/share/qt3/include/qwindowdefs.h /usr/share/qt3/include/qmap.h \
+  /usr/share/qt3/include/qglobal.h /usr/share/qt3/include/qshared.h \
+  /usr/share/qt3/include/qdatastream.h /usr/share/qt3/include/qiodevice.h \
+  /usr/share/qt3/include/qglobal.h /usr/share/qt3/include/qcstring.h \
+  /usr/share/qt3/include/qstring.h /usr/share/qt3/include/qpair.h \
+  /usr/share/qt3/include/qglobal.h /usr/share/qt3/include/qdatastream.h \
   /usr/share/qt3/include/qvaluelist.h /usr/share/qt3/include/qtl.h \
-  /usr/share/qt3/include/qtextstream.h /usr/include/c++/3.4/iterator \
-  /usr/include/c++/3.4/ostream /usr/include/c++/3.4/ios \
-  /usr/include/c++/3.4/bits/localefwd.h \
-  /usr/include/c++/3.4/bits/ios_base.h \
-  /usr/include/c++/3.4/bits/locale_classes.h \
-  /usr/include/c++/3.4/streambuf /usr/include/c++/3.4/bits/streambuf.tcc \
-  /usr/include/c++/3.4/bits/basic_ios.h \
-  /usr/include/c++/3.4/bits/streambuf_iterator.h \
-  /usr/include/c++/3.4/bits/locale_facets.h /usr/include/c++/3.4/cwctype \
-  /usr/include/wctype.h \
-  /usr/include/c++/3.4/i486-linux-gnu/bits/ctype_base.h \
-  /usr/include/c++/3.4/i486-linux-gnu/bits/ctype_inline.h \
-  /usr/include/c++/3.4/bits/codecvt.h \
-  /usr/include/c++/3.4/i486-linux-gnu/bits/codecvt_specializations.h \
-  /usr/include/c++/3.4/i486-linux-gnu/bits/time_members.h \
-  /usr/include/c++/3.4/i486-linux-gnu/bits/messages_members.h \
-  /usr/include/c++/3.4/bits/basic_ios.tcc \
-  /usr/include/c++/3.4/bits/ostream.tcc /usr/include/c++/3.4/locale \
-  /usr/include/c++/3.4/bits/locale_facets.tcc \
-  /usr/include/c++/3.4/typeinfo /usr/include/c++/3.4/istream \
-  /usr/include/c++/3.4/bits/istream.tcc \
-  /usr/include/c++/3.4/bits/stream_iterator.h /usr/include/c++/3.4/list \
-  /usr/include/c++/3.4/bits/stl_list.h /usr/include/c++/3.4/bits/list.tcc \
-  /usr/include/c++/3.4/map /usr/include/c++/3.4/bits/stl_tree.h \
-  /usr/include/c++/3.4/bits/cpp_type_traits.h \
-  /usr/include/c++/3.4/bits/stl_map.h \
-  /usr/include/c++/3.4/bits/stl_multimap.h \
-  /usr/share/qt3/include/qpaintdevice.h /usr/share/qt3/include/qpalette.h \
-  /usr/share/qt3/include/qcolor.h /usr/share/qt3/include/qstringlist.h \
-  /usr/share/qt3/include/qstrlist.h /usr/share/qt3/include/qptrlist.h \
-  /usr/share/qt3/include/qglist.h /usr/share/qt3/include/qptrcollection.h \
-  /usr/share/qt3/include/qbrush.h /usr/share/qt3/include/qfont.h \
-  /usr/share/qt3/include/qfontmetrics.h \
-  /usr/share/qt3/include/qfontinfo.h /usr/share/qt3/include/qsizepolicy.h \
-  snakeparser.h /usr/share/qt3/include/qobject.h \
-  /usr/include/kde/kio/job.h /usr/include/kde/kio/jobclasses.h \
-  /usr/share/qt3/include/qptrlist.h /usr/share/qt3/include/qstringlist.h \
-  /usr/share/qt3/include/qguardedptr.h /usr/include/sys/stat.h \
-  /usr/include/bits/stat.h /usr/include/kde/kurl.h \
-  /usr/share/qt3/include/qvaluelist.h /usr/include/kde/kio/global.h \
-  /usr/share/qt3/include/qdatastream.h /usr/share/qt3/include/qdatetime.h \
-  /usr/share/qt3/include/qmap.h /usr/share/qt3/include/qtimer.h \
-  /usr/share/qt3/include/qfont.h /usr/include/kde/klocale.h \
-  /usr/include/kde/kdelibs_export.h snaketray.moc \
-  /usr/share/qt3/include/qmetaobject.h \
-  /usr/share/qt3/include/qconnection.h \
+  /usr/share/qt3/include/qglobal.h /usr/share/qt3/include/qtextstream.h \
+  /usr/share/qt3/include/qiodevice.h /usr/share/qt3/include/qstring.h \
+  /usr/share/qt3/include/qstring.h /usr/share/qt3/include/qshared.h \
+  /usr/share/qt3/include/qdatastream.h /usr/include/c++/4.0.2/iterator \
+  /usr/include/c++/4.0.2/ostream /usr/include/c++/4.0.2/ios \
+  /usr/include/c++/4.0.2/bits/localefwd.h \
+  /usr/include/c++/4.0.2/bits/ios_base.h \
+  /usr/include/c++/4.0.2/bits/locale_classes.h \
+  /usr/include/c++/4.0.2/streambuf \
+  /usr/include/c++/4.0.2/bits/streambuf.tcc \
+  /usr/include/c++/4.0.2/bits/basic_ios.h \
+  /usr/include/c++/4.0.2/bits/streambuf_iterator.h \
+  /usr/include/c++/4.0.2/bits/locale_facets.h \
+  /usr/include/c++/4.0.2/cwctype /usr/include/wctype.h \
+  /usr/include/c++/4.0.2/i486-linux-gnu/bits/ctype_base.h \
+  /usr/include/c++/4.0.2/i486-linux-gnu/bits/ctype_inline.h \
+  /usr/include/c++/4.0.2/bits/codecvt.h \
+  /usr/include/c++/4.0.2/i486-linux-gnu/bits/time_members.h \
+  /usr/include/c++/4.0.2/i486-linux-gnu/bits/messages_members.h \
+  /usr/include/c++/4.0.2/bits/basic_ios.tcc \
+  /usr/include/c++/4.0.2/bits/ostream.tcc /usr/include/c++/4.0.2/locale \
+  /usr/include/c++/4.0.2/bits/locale_facets.tcc \
+  /usr/include/c++/4.0.2/typeinfo /usr/include/c++/4.0.2/istream \
+  /usr/include/c++/4.0.2/bits/istream.tcc \
+  /usr/include/c++/4.0.2/bits/stream_iterator.h \
+  /usr/include/c++/4.0.2/list /usr/include/c++/4.0.2/bits/stl_list.h \
+  /usr/include/c++/4.0.2/bits/list.tcc \
+  /usr/share/qt3/include/qwinexport.h /usr/include/c++/4.0.2/map \
+  /usr/include/c++/4.0.2/bits/stl_tree.h \
+  /usr/include/c++/4.0.2/bits/stl_map.h \
+  /usr/include/c++/4.0.2/bits/stl_multimap.h \
+  /usr/share/qt3/include/qwinexport.h /usr/share/qt3/include/qpair.h \
+  /usr/share/qt3/include/qnamespace.h /usr/share/qt3/include/qwinexport.h \
+  /usr/share/qt3/include/qpaintdevice.h \
+  /usr/share/qt3/include/qwindowdefs.h /usr/share/qt3/include/qrect.h \
+  /usr/share/qt3/include/qpalette.h /usr/share/qt3/include/qwindowdefs.h \
+  /usr/share/qt3/include/qcolor.h /usr/share/qt3/include/qwindowdefs.h \
+  /usr/share/qt3/include/qstringlist.h \
+  /usr/share/qt3/include/qvaluelist.h /usr/share/qt3/include/qstring.h \
+  /usr/share/qt3/include/qstrlist.h /usr/share/qt3/include/qstring.h \
+  /usr/share/qt3/include/qptrlist.h /usr/share/qt3/include/qglist.h \
+  /usr/share/qt3/include/qptrcollection.h \
+  /usr/share/qt3/include/qglobal.h /usr/share/qt3/include/qwinexport.h \
+  /usr/share/qt3/include/qdatastream.h /usr/share/qt3/include/qshared.h \
+  /usr/share/qt3/include/qbrush.h /usr/share/qt3/include/qcolor.h \
+  /usr/share/qt3/include/qshared.h /usr/share/qt3/include/qfont.h \
+  /usr/share/qt3/include/qwindowdefs.h /usr/share/qt3/include/qstring.h \
+  /usr/share/qt3/include/qfontmetrics.h /usr/share/qt3/include/qfont.h \
+  /usr/share/qt3/include/qrect.h /usr/share/qt3/include/qfontinfo.h \
+  /usr/share/qt3/include/qfont.h /usr/share/qt3/include/qsizepolicy.h \
+  /usr/share/qt3/include/qglobal.h /usr/share/qt3/include/qwinexport.h \
+  snakeparser.h /usr/include/kde/kio/job.h \
+  /usr/include/kde/kio/jobclasses.h /usr/share/qt3/include/qguardedptr.h \
+  /usr/share/qt3/include/qobject.h /usr/share/qt3/include/qwinexport.h \
+  /usr/include/sys/stat.h /usr/include/bits/stat.h \
+  /usr/include/kde/kurl.h /usr/include/kde/kdelibs_export.h \
+  /usr/include/kde/kio/global.h /usr/share/qt3/include/qdatetime.h \
+  /usr/share/qt3/include/qstring.h /usr/share/qt3/include/qnamespace.h \
+  /usr/share/qt3/include/qtimer.h /usr/share/qt3/include/qobject.h \
+  /usr/share/qt3/include/qpixmap.h /usr/share/qt3/include/qpaintdevice.h \
+  /usr/share/qt3/include/qcolor.h /usr/share/qt3/include/qstring.h \
+  /usr/share/qt3/include/qnamespace.h /usr/include/kde/klocale.h \
+  snaketray.moc /usr/share/qt3/include/qmetaobject.h \
+  /usr/share/qt3/include/qconnection.h /usr/share/qt3/include/qobject.h \
+  /usr/share/qt3/include/qwinexport.h /usr/share/qt3/include/qstrlist.h \
   /usr/share/qt3/include/qapplication.h \
   /usr/share/qt3/include/qdesktopwidget.h \
-  /usr/share/qt3/include/qasciidict.h /usr/share/qt3/include/qgdict.h \
-  /usr/share/qt3/include/qtranslator.h \
+  /usr/share/qt3/include/qwidget.h /usr/share/qt3/include/qasciidict.h \
+  /usr/share/qt3/include/qgdict.h /usr/share/qt3/include/qptrcollection.h \
+  /usr/share/qt3/include/qstring.h /usr/share/qt3/include/qwinexport.h \
+  /usr/share/qt3/include/qpalette.h /usr/share/qt3/include/qtranslator.h \
+  /usr/share/qt3/include/qobject.h /usr/share/qt3/include/qvaluelist.h \
+  /usr/share/qt3/include/qstrlist.h /usr/share/qt3/include/qstringlist.h \
   /usr/share/qt3/include/private/qucomextra_p.h \
-  /usr/share/qt3/include/private/qucom_p.h /usr/share/qt3/include/quuid.h
+  /usr/share/qt3/include/private/qucom_p.h /usr/share/qt3/include/quuid.h \
+  /usr/share/qt3/include/qstring.h
 
 snaketray.h:
 
@@ -183,13 +220,15 @@ snaketray.h:
 
 /usr/include/gnu/stubs.h:
 
-/usr/lib/gcc/i486-linux-gnu/3.4.5/include/stddef.h:
+/usr/lib/gcc/i486-linux-gnu/4.0.2/include/stddef.h:
 
 /usr/include/xlocale.h:
 
-/usr/lib/gcc/i486-linux-gnu/3.4.5/include/limits.h:
+/usr/share/qt3/include/qwinexport.h:
 
-/usr/lib/gcc/i486-linux-gnu/3.4.5/include/syslimits.h:
+/usr/lib/gcc/i486-linux-gnu/4.0.2/include/limits.h:
+
+/usr/lib/gcc/i486-linux-gnu/4.0.2/include/syslimits.h:
 
 /usr/include/limits.h:
 
@@ -205,25 +244,25 @@ snaketray.h:
 
 /usr/include/bits/stdio_lim.h:
 
-/usr/include/c++/3.4/string:
+/usr/include/c++/4.0.2/string:
 
-/usr/include/c++/3.4/i486-linux-gnu/bits/c++config.h:
+/usr/include/c++/4.0.2/i486-linux-gnu/bits/c++config.h:
 
-/usr/include/c++/3.4/i486-linux-gnu/bits/os_defines.h:
+/usr/include/c++/4.0.2/i486-linux-gnu/bits/os_defines.h:
 
-/usr/include/c++/3.4/bits/stringfwd.h:
+/usr/include/c++/4.0.2/bits/stringfwd.h:
 
-/usr/include/c++/3.4/bits/char_traits.h:
+/usr/include/c++/4.0.2/bits/char_traits.h:
 
-/usr/include/c++/3.4/cstring:
+/usr/include/c++/4.0.2/cstring:
 
-/usr/include/c++/3.4/cstddef:
+/usr/include/c++/4.0.2/cstddef:
 
-/usr/include/c++/3.4/bits/stl_algobase.h:
+/usr/include/c++/4.0.2/bits/stl_algobase.h:
 
-/usr/include/c++/3.4/climits:
+/usr/include/c++/4.0.2/climits:
 
-/usr/include/c++/3.4/cstdlib:
+/usr/include/c++/4.0.2/cstdlib:
 
 /usr/include/stdlib.h:
 
@@ -261,15 +300,11 @@ snaketray.h:
 
 /usr/include/alloca.h:
 
-/usr/include/c++/3.4/new:
+/usr/include/c++/4.0.2/iosfwd:
 
-/usr/include/c++/3.4/exception:
+/usr/include/c++/4.0.2/i486-linux-gnu/bits/c++locale.h:
 
-/usr/include/c++/3.4/iosfwd:
-
-/usr/include/c++/3.4/i486-linux-gnu/bits/c++locale.h:
-
-/usr/include/c++/3.4/cstdio:
+/usr/include/c++/4.0.2/cstdio:
 
 /usr/include/stdio.h:
 
@@ -283,13 +318,13 @@ snaketray.h:
 
 /usr/include/gconv.h:
 
-/usr/lib/gcc/i486-linux-gnu/3.4.5/include/stdarg.h:
+/usr/lib/gcc/i486-linux-gnu/4.0.2/include/stdarg.h:
 
 /usr/include/bits/sys_errlist.h:
 
 /usr/include/bits/stdio.h:
 
-/usr/include/c++/3.4/clocale:
+/usr/include/c++/4.0.2/clocale:
 
 /usr/include/locale.h:
 
@@ -303,11 +338,11 @@ snaketray.h:
 
 /usr/include/libintl.h:
 
-/usr/include/c++/3.4/i486-linux-gnu/bits/c++io.h:
+/usr/include/c++/4.0.2/i486-linux-gnu/bits/c++io.h:
 
-/usr/include/c++/3.4/i486-linux-gnu/bits/gthr.h:
+/usr/include/c++/4.0.2/i486-linux-gnu/bits/gthr.h:
 
-/usr/include/c++/3.4/i486-linux-gnu/bits/gthr-default.h:
+/usr/include/c++/4.0.2/i486-linux-gnu/bits/gthr-default.h:
 
 /usr/include/pthread.h:
 
@@ -329,73 +364,81 @@ snaketray.h:
 
 /usr/include/getopt.h:
 
-/usr/include/c++/3.4/cctype:
+/usr/include/c++/4.0.2/cctype:
 
 /usr/include/ctype.h:
 
-/usr/include/c++/3.4/bits/postypes.h:
+/usr/include/c++/4.0.2/bits/postypes.h:
 
-/usr/include/c++/3.4/cwchar:
+/usr/include/c++/4.0.2/cwchar:
 
-/usr/include/c++/3.4/ctime:
+/usr/include/c++/4.0.2/ctime:
 
 /usr/include/stdint.h:
 
-/usr/include/c++/3.4/bits/functexcept.h:
+/usr/include/c++/4.0.2/bits/functexcept.h:
 
-/usr/include/c++/3.4/exception_defines.h:
+/usr/include/c++/4.0.2/exception_defines.h:
 
-/usr/include/c++/3.4/bits/stl_pair.h:
+/usr/include/c++/4.0.2/bits/stl_pair.h:
 
-/usr/include/c++/3.4/bits/type_traits.h:
+/usr/include/c++/4.0.2/bits/cpp_type_traits.h:
 
-/usr/include/c++/3.4/bits/stl_iterator_base_types.h:
+/usr/include/c++/4.0.2/bits/stl_iterator_base_types.h:
 
-/usr/include/c++/3.4/bits/stl_iterator_base_funcs.h:
+/usr/include/c++/4.0.2/bits/stl_iterator_base_funcs.h:
 
-/usr/include/c++/3.4/bits/concept_check.h:
+/usr/include/c++/4.0.2/bits/concept_check.h:
 
-/usr/include/c++/3.4/bits/stl_iterator.h:
+/usr/include/c++/4.0.2/bits/stl_iterator.h:
 
-/usr/include/c++/3.4/debug/debug.h:
+/usr/include/c++/4.0.2/debug/debug.h:
 
-/usr/include/c++/3.4/cassert:
+/usr/include/c++/4.0.2/cassert:
 
 /usr/include/assert.h:
 
-/usr/include/c++/3.4/memory:
+/usr/include/c++/4.0.2/memory:
 
-/usr/include/c++/3.4/bits/allocator.h:
+/usr/include/c++/4.0.2/bits/allocator.h:
 
-/usr/include/c++/3.4/i486-linux-gnu/bits/c++allocator.h:
+/usr/include/c++/4.0.2/i486-linux-gnu/bits/c++allocator.h:
 
-/usr/include/c++/3.4/ext/mt_allocator.h:
+/usr/include/c++/4.0.2/ext/mt_allocator.h:
 
-/usr/include/c++/3.4/bits/atomicity.h:
+/usr/include/c++/4.0.2/new:
 
-/usr/include/c++/3.4/i486-linux-gnu/bits/atomic_word.h:
+/usr/include/c++/4.0.2/exception:
 
-/usr/include/c++/3.4/bits/stl_construct.h:
+/usr/include/c++/4.0.2/bits/atomicity.h:
 
-/usr/include/c++/3.4/bits/stl_uninitialized.h:
+/usr/include/c++/4.0.2/i486-linux-gnu/bits/atomic_word.h:
 
-/usr/include/c++/3.4/bits/stl_raw_storage_iter.h:
+/usr/include/c++/4.0.2/bits/stl_construct.h:
 
-/usr/include/c++/3.4/limits:
+/usr/include/c++/4.0.2/bits/stl_uninitialized.h:
 
-/usr/include/c++/3.4/bits/stl_function.h:
+/usr/include/c++/4.0.2/bits/stl_raw_storage_iter.h:
 
-/usr/include/c++/3.4/bits/basic_string.h:
+/usr/include/c++/4.0.2/limits:
 
-/usr/include/c++/3.4/algorithm:
+/usr/include/c++/4.0.2/bits/stl_function.h:
 
-/usr/include/c++/3.4/bits/stl_algo.h:
+/usr/include/c++/4.0.2/bits/basic_string.h:
 
-/usr/include/c++/3.4/bits/stl_heap.h:
+/usr/include/c++/4.0.2/algorithm:
 
-/usr/include/c++/3.4/bits/stl_tempbuf.h:
+/usr/include/c++/4.0.2/bits/stl_algo.h:
 
-/usr/include/c++/3.4/bits/basic_string.tcc:
+/usr/include/c++/4.0.2/bits/stl_heap.h:
+
+/usr/include/c++/4.0.2/bits/stl_tempbuf.h:
+
+/usr/include/c++/4.0.2/bits/basic_string.tcc:
+
+/usr/share/qt3/include/qwinexport.h:
+
+/usr/include/kde/kdelibs_export.h:
 
 /usr/share/qt3/include/qlabel.h:
 
@@ -407,15 +450,29 @@ snaketray.h:
 
 /usr/share/qt3/include/qobjectdefs.h:
 
+/usr/share/qt3/include/qglobal.h:
+
 /usr/share/qt3/include/qstring.h:
 
 /usr/share/qt3/include/qnamespace.h:
 
+/usr/share/qt3/include/qglobal.h:
+
 /usr/share/qt3/include/qobject.h:
+
+/usr/share/qt3/include/qobjectdefs.h:
+
+/usr/share/qt3/include/qwindowdefs.h:
+
+/usr/share/qt3/include/qstring.h:
 
 /usr/share/qt3/include/qevent.h:
 
+/usr/share/qt3/include/qwindowdefs.h:
+
 /usr/share/qt3/include/qregion.h:
+
+/usr/share/qt3/include/qshared.h:
 
 /usr/share/qt3/include/qrect.h:
 
@@ -423,101 +480,157 @@ snaketray.h:
 
 /usr/share/qt3/include/qpoint.h:
 
+/usr/share/qt3/include/qwindowdefs.h:
+
+/usr/share/qt3/include/qwinexport.h:
+
+/usr/share/qt3/include/qwinexport.h:
+
+/usr/share/qt3/include/qnamespace.h:
+
 /usr/share/qt3/include/qmime.h:
 
+/usr/share/qt3/include/qwindowdefs.h:
+
 /usr/share/qt3/include/qmap.h:
+
+/usr/share/qt3/include/qglobal.h:
+
+/usr/share/qt3/include/qshared.h:
 
 /usr/share/qt3/include/qdatastream.h:
 
 /usr/share/qt3/include/qiodevice.h:
 
+/usr/share/qt3/include/qglobal.h:
+
+/usr/share/qt3/include/qcstring.h:
+
+/usr/share/qt3/include/qstring.h:
+
 /usr/share/qt3/include/qpair.h:
+
+/usr/share/qt3/include/qglobal.h:
+
+/usr/share/qt3/include/qdatastream.h:
 
 /usr/share/qt3/include/qvaluelist.h:
 
 /usr/share/qt3/include/qtl.h:
 
+/usr/share/qt3/include/qglobal.h:
+
 /usr/share/qt3/include/qtextstream.h:
 
-/usr/include/c++/3.4/iterator:
+/usr/share/qt3/include/qiodevice.h:
 
-/usr/include/c++/3.4/ostream:
+/usr/share/qt3/include/qstring.h:
 
-/usr/include/c++/3.4/ios:
+/usr/share/qt3/include/qstring.h:
 
-/usr/include/c++/3.4/bits/localefwd.h:
+/usr/share/qt3/include/qshared.h:
 
-/usr/include/c++/3.4/bits/ios_base.h:
+/usr/share/qt3/include/qdatastream.h:
 
-/usr/include/c++/3.4/bits/locale_classes.h:
+/usr/include/c++/4.0.2/iterator:
 
-/usr/include/c++/3.4/streambuf:
+/usr/include/c++/4.0.2/ostream:
 
-/usr/include/c++/3.4/bits/streambuf.tcc:
+/usr/include/c++/4.0.2/ios:
 
-/usr/include/c++/3.4/bits/basic_ios.h:
+/usr/include/c++/4.0.2/bits/localefwd.h:
 
-/usr/include/c++/3.4/bits/streambuf_iterator.h:
+/usr/include/c++/4.0.2/bits/ios_base.h:
 
-/usr/include/c++/3.4/bits/locale_facets.h:
+/usr/include/c++/4.0.2/bits/locale_classes.h:
 
-/usr/include/c++/3.4/cwctype:
+/usr/include/c++/4.0.2/streambuf:
+
+/usr/include/c++/4.0.2/bits/streambuf.tcc:
+
+/usr/include/c++/4.0.2/bits/basic_ios.h:
+
+/usr/include/c++/4.0.2/bits/streambuf_iterator.h:
+
+/usr/include/c++/4.0.2/bits/locale_facets.h:
+
+/usr/include/c++/4.0.2/cwctype:
 
 /usr/include/wctype.h:
 
-/usr/include/c++/3.4/i486-linux-gnu/bits/ctype_base.h:
+/usr/include/c++/4.0.2/i486-linux-gnu/bits/ctype_base.h:
 
-/usr/include/c++/3.4/i486-linux-gnu/bits/ctype_inline.h:
+/usr/include/c++/4.0.2/i486-linux-gnu/bits/ctype_inline.h:
 
-/usr/include/c++/3.4/bits/codecvt.h:
+/usr/include/c++/4.0.2/bits/codecvt.h:
 
-/usr/include/c++/3.4/i486-linux-gnu/bits/codecvt_specializations.h:
+/usr/include/c++/4.0.2/i486-linux-gnu/bits/time_members.h:
 
-/usr/include/c++/3.4/i486-linux-gnu/bits/time_members.h:
+/usr/include/c++/4.0.2/i486-linux-gnu/bits/messages_members.h:
 
-/usr/include/c++/3.4/i486-linux-gnu/bits/messages_members.h:
+/usr/include/c++/4.0.2/bits/basic_ios.tcc:
 
-/usr/include/c++/3.4/bits/basic_ios.tcc:
+/usr/include/c++/4.0.2/bits/ostream.tcc:
 
-/usr/include/c++/3.4/bits/ostream.tcc:
+/usr/include/c++/4.0.2/locale:
 
-/usr/include/c++/3.4/locale:
+/usr/include/c++/4.0.2/bits/locale_facets.tcc:
 
-/usr/include/c++/3.4/bits/locale_facets.tcc:
+/usr/include/c++/4.0.2/typeinfo:
 
-/usr/include/c++/3.4/typeinfo:
+/usr/include/c++/4.0.2/istream:
 
-/usr/include/c++/3.4/istream:
+/usr/include/c++/4.0.2/bits/istream.tcc:
 
-/usr/include/c++/3.4/bits/istream.tcc:
+/usr/include/c++/4.0.2/bits/stream_iterator.h:
 
-/usr/include/c++/3.4/bits/stream_iterator.h:
+/usr/include/c++/4.0.2/list:
 
-/usr/include/c++/3.4/list:
+/usr/include/c++/4.0.2/bits/stl_list.h:
 
-/usr/include/c++/3.4/bits/stl_list.h:
+/usr/include/c++/4.0.2/bits/list.tcc:
 
-/usr/include/c++/3.4/bits/list.tcc:
+/usr/share/qt3/include/qwinexport.h:
 
-/usr/include/c++/3.4/map:
+/usr/include/c++/4.0.2/map:
 
-/usr/include/c++/3.4/bits/stl_tree.h:
+/usr/include/c++/4.0.2/bits/stl_tree.h:
 
-/usr/include/c++/3.4/bits/cpp_type_traits.h:
+/usr/include/c++/4.0.2/bits/stl_map.h:
 
-/usr/include/c++/3.4/bits/stl_map.h:
+/usr/include/c++/4.0.2/bits/stl_multimap.h:
 
-/usr/include/c++/3.4/bits/stl_multimap.h:
+/usr/share/qt3/include/qwinexport.h:
+
+/usr/share/qt3/include/qpair.h:
+
+/usr/share/qt3/include/qnamespace.h:
+
+/usr/share/qt3/include/qwinexport.h:
 
 /usr/share/qt3/include/qpaintdevice.h:
 
+/usr/share/qt3/include/qwindowdefs.h:
+
+/usr/share/qt3/include/qrect.h:
+
 /usr/share/qt3/include/qpalette.h:
+
+/usr/share/qt3/include/qwindowdefs.h:
 
 /usr/share/qt3/include/qcolor.h:
 
+/usr/share/qt3/include/qwindowdefs.h:
+
 /usr/share/qt3/include/qstringlist.h:
 
+/usr/share/qt3/include/qvaluelist.h:
+
+/usr/share/qt3/include/qstring.h:
+
 /usr/share/qt3/include/qstrlist.h:
+
+/usr/share/qt3/include/qstring.h:
 
 /usr/share/qt3/include/qptrlist.h:
 
@@ -525,29 +638,53 @@ snaketray.h:
 
 /usr/share/qt3/include/qptrcollection.h:
 
+/usr/share/qt3/include/qglobal.h:
+
+/usr/share/qt3/include/qwinexport.h:
+
+/usr/share/qt3/include/qdatastream.h:
+
+/usr/share/qt3/include/qshared.h:
+
 /usr/share/qt3/include/qbrush.h:
+
+/usr/share/qt3/include/qcolor.h:
+
+/usr/share/qt3/include/qshared.h:
 
 /usr/share/qt3/include/qfont.h:
 
+/usr/share/qt3/include/qwindowdefs.h:
+
+/usr/share/qt3/include/qstring.h:
+
 /usr/share/qt3/include/qfontmetrics.h:
+
+/usr/share/qt3/include/qfont.h:
+
+/usr/share/qt3/include/qrect.h:
 
 /usr/share/qt3/include/qfontinfo.h:
 
+/usr/share/qt3/include/qfont.h:
+
 /usr/share/qt3/include/qsizepolicy.h:
 
-snakeparser.h:
+/usr/share/qt3/include/qglobal.h:
 
-/usr/share/qt3/include/qobject.h:
+/usr/share/qt3/include/qwinexport.h:
+
+snakeparser.h:
 
 /usr/include/kde/kio/job.h:
 
 /usr/include/kde/kio/jobclasses.h:
 
-/usr/share/qt3/include/qptrlist.h:
-
-/usr/share/qt3/include/qstringlist.h:
-
 /usr/share/qt3/include/qguardedptr.h:
+
+/usr/share/qt3/include/qobject.h:
+
+/usr/share/qt3/include/qwinexport.h:
 
 /usr/include/sys/stat.h:
 
@@ -555,23 +692,31 @@ snakeparser.h:
 
 /usr/include/kde/kurl.h:
 
-/usr/share/qt3/include/qvaluelist.h:
+/usr/include/kde/kdelibs_export.h:
 
 /usr/include/kde/kio/global.h:
 
-/usr/share/qt3/include/qdatastream.h:
-
 /usr/share/qt3/include/qdatetime.h:
 
-/usr/share/qt3/include/qmap.h:
+/usr/share/qt3/include/qstring.h:
+
+/usr/share/qt3/include/qnamespace.h:
 
 /usr/share/qt3/include/qtimer.h:
 
-/usr/share/qt3/include/qfont.h:
+/usr/share/qt3/include/qobject.h:
+
+/usr/share/qt3/include/qpixmap.h:
+
+/usr/share/qt3/include/qpaintdevice.h:
+
+/usr/share/qt3/include/qcolor.h:
+
+/usr/share/qt3/include/qstring.h:
+
+/usr/share/qt3/include/qnamespace.h:
 
 /usr/include/kde/klocale.h:
-
-/usr/include/kde/kdelibs_export.h:
 
 snaketray.moc:
 
@@ -579,18 +724,44 @@ snaketray.moc:
 
 /usr/share/qt3/include/qconnection.h:
 
+/usr/share/qt3/include/qobject.h:
+
+/usr/share/qt3/include/qwinexport.h:
+
+/usr/share/qt3/include/qstrlist.h:
+
 /usr/share/qt3/include/qapplication.h:
 
 /usr/share/qt3/include/qdesktopwidget.h:
+
+/usr/share/qt3/include/qwidget.h:
 
 /usr/share/qt3/include/qasciidict.h:
 
 /usr/share/qt3/include/qgdict.h:
 
+/usr/share/qt3/include/qptrcollection.h:
+
+/usr/share/qt3/include/qstring.h:
+
+/usr/share/qt3/include/qwinexport.h:
+
+/usr/share/qt3/include/qpalette.h:
+
 /usr/share/qt3/include/qtranslator.h:
+
+/usr/share/qt3/include/qobject.h:
+
+/usr/share/qt3/include/qvaluelist.h:
+
+/usr/share/qt3/include/qstrlist.h:
+
+/usr/share/qt3/include/qstringlist.h:
 
 /usr/share/qt3/include/private/qucomextra_p.h:
 
 /usr/share/qt3/include/private/qucom_p.h:
 
 /usr/share/qt3/include/quuid.h:
+
+/usr/share/qt3/include/qstring.h:

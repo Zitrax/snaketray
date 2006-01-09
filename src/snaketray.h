@@ -55,6 +55,7 @@ public slots:
     
 private slots:
 	void updateTimer(int minutes);
+	void readyToRequest();
 	void tick();	
     
 private:

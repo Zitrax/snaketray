@@ -120,7 +120,7 @@ void SnakeParser::parseData()
 	else if( m_snakepage.contains("You may now make a request") )
 	{
 		qDebug("You may now make a request");
-		emit timeLeftReceived(0);
+		emit timeLeftReceived(1);
 	}
 }
 

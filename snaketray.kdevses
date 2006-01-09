@@ -1,7 +1,23 @@
 <?xml version = '1.0' encoding = 'UTF-8'?>
 <!DOCTYPE KDevPrjSession>
 <KDevPrjSession>
- <DocsAndViews NumberOfDocuments="0" />
+ <DocsAndViews NumberOfDocuments="5" >
+  <Doc0 NumberOfViews="1" URL="file:///home/danielb/cvs/snaketray/src/snakelogindialog.h" >
+   <View0 line="0" Type="Source" />
+  </Doc0>
+  <Doc1 NumberOfViews="1" URL="file:///home/danielb/cvs/snaketray/config.log" >
+   <View0 line="0" Type="Source" />
+  </Doc1>
+  <Doc2 NumberOfViews="1" URL="file:///home/danielb/cvs/snaketray/src/snakeparser.cpp" >
+   <View0 line="122" Type="Source" />
+  </Doc2>
+  <Doc3 NumberOfViews="1" URL="file:///home/danielb/cvs/snaketray/src/snaketray.cpp" >
+   <View0 line="88" Type="Source" />
+  </Doc3>
+  <Doc4 NumberOfViews="1" URL="file:///home/danielb/cvs/snaketray/src/snaketray.h" >
+   <View0 line="57" Type="Source" />
+  </Doc4>
+ </DocsAndViews>
  <pluginList>
   <kdevdebugger>
    <breakpointList/>

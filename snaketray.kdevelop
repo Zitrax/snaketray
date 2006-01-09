@@ -14,7 +14,7 @@
     </keywords>
     <projectdirectory>.</projectdirectory>
     <absoluteprojectpath>false</absoluteprojectpath>
-    <description/>
+    <description></description>
     <ignoreparts/>
     <secondaryLanguages/>
     <versioncontrol>kdevcvsservice</versioncontrol>
@@ -28,7 +28,7 @@
       <mainprogram>src/snaketray</mainprogram>
       <directoryradio>executable</directoryradio>
       <customdirectory>/</customdirectory>
-      <programargs/>
+      <programargs></programargs>
       <terminal>false</terminal>
       <autocompile>true</autocompile>
       <envvars/>
@@ -60,20 +60,20 @@
       </debug>
       <default>
         <envvars/>
-        <configargs/>
-        <builddir/>
-        <topsourcedir/>
-        <cppflags/>
+        <configargs></configargs>
+        <builddir></builddir>
+        <topsourcedir></topsourcedir>
+        <cppflags></cppflags>
         <ldflags>-lkio</ldflags>
         <ccompiler>kdevgccoptions</ccompiler>
         <cxxcompiler>kdevgppoptions</cxxcompiler>
         <f77compiler>kdevpghpfoptions</f77compiler>
-        <ccompilerbinary>gcc-3.4</ccompilerbinary>
-        <cxxcompilerbinary>g++-3.4</cxxcompilerbinary>
-        <f77compilerbinary/>
-        <cflags>-g</cflags>
-        <cxxflags>-g</cxxflags>
-        <f77flags/>
+        <ccompilerbinary>gcc</ccompilerbinary>
+        <cxxcompilerbinary>g++</cxxcompilerbinary>
+        <f77compilerbinary></f77compilerbinary>
+        <cflags></cflags>
+        <cxxflags></cxxflags>
+        <f77flags></f77flags>
       </default>
     </configurations>
     <make>
@@ -83,7 +83,7 @@
       <abortonerror>false</abortonerror>
       <numberofjobs>1</numberofjobs>
       <dontact>false</dontact>
-      <makebin/>
+      <makebin></makebin>
       <prio>0</prio>
     </make>
   </kdevautoproject>
@@ -149,11 +149,11 @@
   <kdevdebugger>
     <general>
       <dbgshell>libtool</dbgshell>
-      <programargs/>
-      <gdbpath/>
-      <configGdbScript/>
-      <runShellScript/>
-      <runGdbScript/>
+      <programargs></programargs>
+      <gdbpath></gdbpath>
+      <configGdbScript></configGdbScript>
+      <runShellScript></runShellScript>
+      <runGdbScript></runGdbScript>
       <breakonloadinglibs>true</breakonloadinglibs>
       <separatetty>false</separatetty>
       <floatingtoolbar>false</floatingtoolbar>
@@ -193,7 +193,7 @@
     </codecompletion>
     <references/>
     <creategettersetter>
-      <prefixGet/>
+      <prefixGet></prefixGet>
       <prefixSet>set</prefixSet>
       <prefixVariable>m_,_</prefixVariable>
       <parameterName>theValue</parameterName>
@@ -203,8 +203,8 @@
   </kdevcppsupport>
   <kdevvisualadvance>
     <emulator>VisualBoyAdvance</emulator>
-    <binary/>
-    <addOptions/>
+    <binary></binary>
+    <addOptions></addOptions>
     <terminal>false</terminal>
     <fullscreen>false</fullscreen>
     <graphicFilter>-f0</graphicFilter>
