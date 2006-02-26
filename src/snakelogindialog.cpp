@@ -12,10 +12,14 @@
 #include "snakelogindialog.h"
 
 #include "qlineedit.h"
+#include "qpixmap.h"
 
 SnakeLoginDialog::SnakeLoginDialog(QWidget* parent)
  : LoginDialog(parent)
 {
+    QPixmap ico("snakenet.png");
+    if( !ico.isNull() )
+        setIcon(ico);
 }
 
 SnakeLoginDialog::~SnakeLoginDialog()
