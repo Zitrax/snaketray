@@ -51,7 +51,7 @@ void SnakeParser::startParsing(const QString& url)
 {
 	qDebug("SnakeParser::startParsing(%s)", url.latin1());
 
-    if( m_parsing )
+    if( !m_login_tried && m_parsing )
     {
         qDebug("Already parsing");
         return;
@@ -131,7 +131,7 @@ void SnakeParser::parseData()
 	else if( m_snakepage.contains("You may now make a request") )
 	{
 		qDebug("You may now make a request");
-		emit timeLeftReceived(1);
+		emit timeLeftReceived(0);
 	}
 }
 
