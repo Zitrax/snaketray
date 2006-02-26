@@ -36,7 +36,7 @@
  * @version 0.1
  *
  * This is the class that shows up in the tray as a small icon.
- * IT will be filled with the remaining minutes that will count
+ * It will be filled with the remaining minutes that will count
  * down. If 0 minutes are left, 'OK' will be shown.
  *
  * You should only have to create an object of this class to start
@@ -52,6 +52,9 @@ public:
 public slots:
 	void startParsing();
 
+protected:
+
+    void mousePressEvent(QMouseEvent* me);
     
 private slots:
 	void updateTimer(int minutes);
@@ -59,11 +62,20 @@ private slots:
 	void tick();	
     
 private:
+    /** 
+     * This function tries to find a suitable 
+     * font for the progress text.
+     */
+    void findFont();
+
 	QLabel* m_progress;
 	QTime* m_time;
 	SnakeParser* m_parser;
 	int m_received_minutes;
 	bool m_finished;
+    bool m_parsing;
+
+    const int m_size;
 };
 
 #endif // _SNAKETRAY_H_
