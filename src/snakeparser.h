@@ -77,11 +77,13 @@ private:
 	QString m_snakepage;
 	/// Keeps track of if we just tried to login
 	bool m_login_tried;
+    /// True if we are currently parsing
+    bool m_parsing;
 signals:
-       /** 
-	* This signal will be sent when the parser has 
-	* retrieved a value for the time to next request.
-	*/
+    /** 
+     * This signal will be sent when the parser has 
+     * retrieved a value for the time to next request.
+     */
 	void timeLeftReceived(int);
 
 	/**

@@ -33,7 +33,9 @@
 using namespace std;
 
 SnakeParser::SnakeParser(QObject* parent, const char* name) 
-	: QObject(parent,name), m_login_tried(false)	
+	: QObject(parent,name), 
+      m_login_tried(false), 
+      m_parsing(false)	
 {
 	qDebug("Creating SnakeParser");
 }
@@ -49,7 +51,14 @@ void SnakeParser::startParsing(const QString& url)
 {
 	qDebug("SnakeParser::startParsing(%s)", url.latin1());
 
+    if( m_parsing )
+    {
+        qDebug("Already parsing");
+        return;
+    }
+
 	m_snakepage = QString::null;
+    m_parsing = true;
 
 	KIO::SimpleJob* cache_job = KIO::http_update_cache( url, true, 0);
 	if( cache_job )
@@ -80,6 +89,7 @@ void SnakeParser::jobData( KIO::Job* job, const QByteArray& data )
 		qDebug("Job data error");
 		job->showErrorDialog();
 		job->kill();
+        m_parsing = false;
 	}
 	else if( data.size() == 0 )
 	{
@@ -88,10 +98,11 @@ void SnakeParser::jobData( KIO::Job* job, const QByteArray& data )
 		if( !m_login_tried )
 			parseData();
 		else
-                {
+        {
 			m_login_tried = false;
 			emit loginTried();
 		}
+        m_parsing = false;
 		return;
 	}
 	
