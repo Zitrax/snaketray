@@ -77,8 +77,14 @@ private:
 	QString m_snakepage;
 	/// Keeps track of if we just tried to login
 	bool m_login_tried;
-    /// True if we are currently parsing
-    bool m_parsing;
+	/// True if we are currently parsing
+	bool m_parsing;
+	/// last username used
+	QString m_user;
+	/// last pass
+	QString m_pass;
+	/// Indicator if we have tried to reglogin with old data
+	bool m_relogin;
 signals:
     /** 
      * This signal will be sent when the parser has 

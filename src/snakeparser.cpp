@@ -33,9 +33,12 @@
 using namespace std;
 
 SnakeParser::SnakeParser(QObject* parent, const char* name) 
-	: QObject(parent,name), 
-      m_login_tried(false), 
-      m_parsing(false)	
+	: QObject(parent,name),
+	m_login_tried(false),
+	m_parsing(false),
+	m_user(QString::null),
+	m_pass(QString::null),
+	m_relogin(false)
 {
 	qDebug("Creating SnakeParser");
 }
@@ -98,11 +101,11 @@ void SnakeParser::jobData( KIO::Job* job, const QByteArray& data )
 		if( !m_login_tried )
 			parseData();
 		else
-        {
+		{
 			m_login_tried = false;
 			emit loginTried();
 		}
-        m_parsing = false;
+		m_parsing = false;
 		return;
 	}
 	
@@ -120,16 +123,27 @@ void SnakeParser::parseData()
 	if( m_snakepage.contains( "memberlogin.jpg" ) )
 	{
 		qDebug("It's the login page");
-		login();
+		if( !m_relogin && !m_user.isEmpty() && !m_pass.isEmpty() )
+		{
+			m_relogin = true;
+			login( m_user, m_pass );
+		}
+		else
+		{
+			m_relogin = false; m_pass = QString::null; m_user = QString::null;
+			login();
+		}
 	}
 	else if( minutes.search(m_snakepage) != -1 )
 	{
+		m_relogin = false;
 		int min_left = minutes.cap(1).toInt();
 		qDebug( "%i minutes left", min_left );
 		emit timeLeftReceived(min_left);
 	}
 	else if( m_snakepage.contains("You may now make a request") )
 	{
+		m_relogin = false;
 		qDebug("You may now make a request");
 		emit timeLeftReceived(0);
 	}
@@ -137,6 +151,8 @@ void SnakeParser::parseData()
 
 void SnakeParser::login(const QString& user, const QString& pass)
 {
+	m_user = user; m_pass = pass;
+
 	QString login_url("http://www.snakenetmetalradio.com/heavymetallounge/login.asp");
 	login_url = login_url + "?email=" + user + "&password=" + pass;
 	qDebug("Will login using - " + login_url);
