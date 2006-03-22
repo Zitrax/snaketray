@@ -24,6 +24,7 @@
 #include <qtimer.h>
 #include <qfont.h>
 #include <qpixmap.h>
+#include <qtooltip.h>
 #include <klocale.h>
 
 SnakeTray::SnakeTray()
@@ -39,14 +40,16 @@ SnakeTray::SnakeTray()
 	qWarning( "Starting SnakeTray" );
 	m_progress->resize( m_size,m_size );
 
-    findFont();
-    	
+	findFont();
+
+	QToolTip::add( m_progress, tr("Left-click to resync the timer with the server.") );
+
 	connect( m_parser, SIGNAL(timeLeftReceived(int)), this, SLOT(updateTimer(int) ) );
 	connect( m_parser, SIGNAL(loginTried()),          this, SLOT(startParsing()) );
 	QTimer* timer = new QTimer();
 	connect( timer, SIGNAL(timeout()), this, SLOT(tick()) );
 	timer->start(1000);
-    
+ 
 	startParsing();
 }
 
@@ -58,16 +61,16 @@ SnakeTray::~ SnakeTray()
 void SnakeTray::findFont()
 {
 	QFont small("Helvetica",10);
-    QString test("00:00");
-    QFontMetrics fm(small);
-    while( fm.width(test) > m_size )
-    {
-        qDebug("Font: width = %i pointsize = %i",fm.width(test), small.pointSize());
-        small.setPointSize(small.pointSize()-1);
-        fm = QFontMetrics(small);
-        if(small.pointSize() < 6)
-            break;
-    }
+	QString test("000:00");
+	QFontMetrics fm(small);
+	while( fm.width(test) > m_size )
+	{
+        	qDebug("Font: width = %i pointsize = %i",fm.width(test), small.pointSize());
+		small.setPointSize(small.pointSize()-1);
+		fm = QFontMetrics(small);
+		if(small.pointSize() < 4)
+			break;
+	}
     
 	m_progress->setFont( small );
 }
@@ -113,12 +116,12 @@ void SnakeTray::updateTimer(int minutes)
 		float remaining = m_received_minutes-(m_time->elapsed()/60000.0);
 		int minutes = static_cast<int>(remaining);
 		int seconds = (remaining - minutes)*60;
-		if( remaining > 0 )
+	if( remaining > 0 )
         {
-            QString sec_str;
-            sec_str.sprintf("%02d",seconds);
-			m_progress->setText( QString::number(minutes) + ":" + sec_str );
-            m_progress->show();
+		QString sec_str;
+		sec_str.sprintf("%02d",seconds);
+		m_progress->setText( QString::number(minutes) + ":" + sec_str );
+		m_progress->show();
         }
 		else
 			readyToRequest();

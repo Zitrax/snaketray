@@ -29,6 +29,7 @@
 
 #include <kio/scheduler.h>
 #include <kapplication.h>
+#include <dcopclient.h>
 
 using namespace std;
 
@@ -125,6 +126,7 @@ void SnakeParser::parseData()
 		qDebug("It's the login page");
 		if( !m_relogin && !m_user.isEmpty() && !m_pass.isEmpty() )
 		{
+			qDebug("Will try to relogin using old info...");
 			m_relogin = true;
 			login( m_user, m_pass );
 		}
@@ -149,8 +151,25 @@ void SnakeParser::parseData()
 	}
 }
 
+bool SnakeParser::removeCookie()
+{
+	qDebug("SnakeParser::removeCookie()");
+	QByteArray domain;
+	QDataStream arg(domain, IO_WriteOnly);
+	arg << "http://www.snakenetmetalradio.com/";
+	if( !KApplication::dcopClient()->send("kcookiejar","kcookiejar", "deleteCookiesFromDomain(QString)", domain) )
+	{
+		qDebug("Could not send cookie dcop!");
+		return false;
+	}
+	return true;
+}
+
 void SnakeParser::login(const QString& user, const QString& pass)
 {
+	// When this work we should enable removeCookie()
+	// removeCookie();
+
 	m_user = user; m_pass = pass;
 
 	QString login_url("http://www.snakenetmetalradio.com/heavymetallounge/login.asp");

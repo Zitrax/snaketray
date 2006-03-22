@@ -73,6 +73,12 @@ private:
 	 * where you are asked to login.
 	 */
 	void login();
+	/**
+	 * Removes the snakenet cookie
+	 * @param <b>true</b> if the dcop message was sent, false otherwise
+	 */
+	bool removeCookie();
+
 	/// The received data. (Hopefully the requestpage)
 	QString m_snakepage;
 	/// Keeps track of if we just tried to login
