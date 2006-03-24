@@ -44,38 +44,46 @@
  */
 class SnakeTray : public KSystemTray
 {
-    Q_OBJECT
-public:
-    SnakeTray();
-    virtual ~SnakeTray();
+	Q_OBJECT
+	public:
+		SnakeTray();
+		virtual ~SnakeTray();
 
-public slots:
-	void startParsing();
+	public slots:
+		void startParsing();
 
-protected:
+		void setUpdateTimer(int minutes)
+		{ m_update_timer = minutes; }
 
-    void mousePressEvent(QMouseEvent* me);
+	protected:
+
+		void mousePressEvent(QMouseEvent* me);
     
-private slots:
-	void updateTimer(int minutes);
-	void readyToRequest();
-	void tick();	
+	private slots:
+		void updateTimer(int minutes);
+		void readyToRequest();
+		void notLoggedIn();
+		void tick();	
+		void openSettings();
     
-private:
-    /** 
-     * This function tries to find a suitable 
-     * font for the progress text.
-     */
-    void findFont();
+	private:
+		/** 
+		 * This function tries to find a suitable 
+		 * font for the progress text.
+        	 */
+		void findFont();
 
-	QLabel* m_progress;
-	QTime* m_time;
-	SnakeParser* m_parser;
-	int m_received_minutes;
-	bool m_finished;
-    bool m_parsing;
+		QLabel* m_progress;
+		QTime* m_time;
+		SnakeParser* m_parser;
+		int m_received_minutes;
+		bool m_ready; // true if we are ready to request
+		bool m_parsing; // currently parsing
+		bool m_first_parse; // true until we have started the first parse
 
-    const int m_size;
+		int m_update_timer;
+
+		const int m_size;
 };
 
 #endif // _SNAKETRAY_H_

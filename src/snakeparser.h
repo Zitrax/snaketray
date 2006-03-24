@@ -31,77 +31,81 @@
  */
 class SnakeParser : public QObject
 {
-Q_OBJECT
-public:
-	SnakeParser(QObject* parent, const char* name);
-	~SnakeParser();
-	
-	/**
-	 * Will start retrieving the url
-	 * The slots jobResult and jobData will be called
-	 * during the transfer.
-	 * @param url The url to retrieve
-	 */
-	void startParsing(const QString& url);
-	
-private slots:
-	/**
-	 * Will check for errors of the job
-	 */
-	void jobResult( KIO::Job* job );
-	/**
-	 * Chunks of data arrive in this slot. When data->size() == 0
-	 * we are done and can start parse the data using
-	 * parseData()
-	 */
-	void jobData( KIO::Job* job, const QByteArray& data );
-	/**
-	 * Will try to login to snakenet using...
-	 * @param user The username
-	 * @param pass The password
-	 */
-	void login(const QString& user, const QString& pass);
-	
-private:
-	/**
-	 * Will parse the data that arrived in the jobData() slot.
-	 * If it is the requestpage the remaining minutes will be parsed.
-	 */
-	void parseData();
-	/**
-	 * Will popup a dialog with fields for username and passwors, 
-	 * where you are asked to login.
-	 */
-	void login();
-	/**
-	 * Removes the snakenet cookie
-	 * @param <b>true</b> if the dcop message was sent, false otherwise
-	 */
-	bool removeCookie();
-
-	/// The received data. (Hopefully the requestpage)
-	QString m_snakepage;
-	/// Keeps track of if we just tried to login
-	bool m_login_tried;
-	/// True if we are currently parsing
-	bool m_parsing;
-	/// last username used
-	QString m_user;
-	/// last pass
-	QString m_pass;
-	/// Indicator if we have tried to reglogin with old data
-	bool m_relogin;
-signals:
-    /** 
-     * This signal will be sent when the parser has 
-     * retrieved a value for the time to next request.
-     */
-	void timeLeftReceived(int);
-
-	/**
-	 * Emitted after we have tried to login.
-	 */
-	void loginTried();
+	Q_OBJECT
+	public:
+		SnakeParser(QObject* parent, const char* name);
+		~SnakeParser();
+		
+	        /**
+		 * Will start retrieving the url
+		 * The slots jobResult and jobData will be called
+		 * during the transfer.
+		 * @param url The url to retrieve
+	         */
+		void startParsing(const QString& url);
+		/**
+		 * Removes the snakenet cookie
+		 * @param <b>true</b> if the dcop message was sent, false otherwise
+		 */
+		bool removeCookie();
+	private slots:
+	        /**
+	         * Will check for errors of the job
+	         */
+		void jobResult( KIO::Job* job );
+	        /**
+		 * Chunks of data arrive in this slot. When data->size() == 0
+		 * we are done and can start parse the data using
+		 * parseData()
+		 */
+		void jobData( KIO::Job* job, const QByteArray& data );
+         	/**
+		 * Will try to login to snakenet using...
+		 * @param user The username
+		 * @param pass The password
+		 */
+		void login(const QString& user, const QString& pass);
+		
+	private:
+	        /**
+	         * Will parse the data that arrived in the jobData() slot.
+	         * If it is the requestpage the remaining minutes will be parsed.
+		 */
+		void parseData();
+         	/**
+		 * Will popup a dialog with fields for username and passwors, 
+		 * where you are asked to login.
+		 */
+		void login();
+		
+        	/// The received data. (Hopefully the requestpage)
+		QString m_snakepage;
+        	/// Keeps track of if we just tried to login
+		bool m_login_tried;
+        	/// True if we are currently parsing
+		bool m_parsing;
+        	/// last username used
+		QString m_user;
+	        /// last pass
+		QString m_pass;
+	        /// Indicator if we have tried to reglogin with old data
+		bool m_relogin;
+	signals:
+               /** 
+	        * This signal will be sent when the parser has 
+	        * retrieved a value for the time to next request.
+		*/
+		void timeLeftReceived(int);
+		
+               /**
+		* Emitted after we have tried to login.
+		*/
+		void loginTried();
+		
+		/**
+		 * Emitted if login was aborted
+		 */
+		void loginAborted();
 };
  
 #endif

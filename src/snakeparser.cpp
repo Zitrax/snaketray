@@ -156,8 +156,8 @@ bool SnakeParser::removeCookie()
 	qDebug("SnakeParser::removeCookie()");
 	QByteArray domain;
 	QDataStream arg(domain, IO_WriteOnly);
-	arg << "http://www.snakenetmetalradio.com/";
-	if( !KApplication::dcopClient()->send("kcookiejar","kcookiejar", "deleteCookiesFromDomain(QString)", domain) )
+	arg << ".snakenetmetalradio.com";
+	if( !KApplication::dcopClient()->send("kded","kcookiejar", "deleteCookiesFromDomain(QString)", domain) )
 	{
 		qDebug("Could not send cookie dcop!");
 		return false;
@@ -168,7 +168,7 @@ bool SnakeParser::removeCookie()
 void SnakeParser::login(const QString& user, const QString& pass)
 {
 	// When this work we should enable removeCookie()
-	// removeCookie();
+	removeCookie();
 
 	m_user = user; m_pass = pass;
 
@@ -184,5 +184,7 @@ void SnakeParser::login()
 	SnakeLoginDialog dialog(0);
 	connect(&dialog, SIGNAL(login(const QString&, const QString& )),
 		this,      SLOT(login(const QString&, const QString& )));
-	dialog.exec();
+	int ret = dialog.exec();
+	if(ret == QDialog::Rejected )
+		emit loginAborted();
 }
