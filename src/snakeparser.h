@@ -97,6 +97,11 @@ class SnakeParser : public QObject
 		*/
 		void timeLeftReceived(int);
 		
+	       /**
+		* Emitted if there is unknown content parsed. 
+		*/
+		void unknownContent();
+
                /**
 		* Emitted after we have tried to login.
 		*/

@@ -27,6 +27,8 @@
 #include <qfont.h>
 #include <qpixmap.h>
 #include <qtooltip.h>
+#include <kapplication.h>  // kapp
+#include <dcopclient.h>    // kapp->dcopClient()
 #include <klocale.h>
 #include <kpopupmenu.h>
 #include <kiconloader.h>
@@ -42,6 +44,12 @@ SnakeTray::SnakeTray() : KSystemTray( 0, "SnakeTray" ),
       m_size(24)
 {
 	qWarning( "Starting SnakeTray" );
+	
+	/*
+	kapp->dcopClient()->attach();
+	qDebug( "isAttached() = %i", kapp->dcopClient()->isAttached() );
+	*/
+
 	m_progress->resize( m_size,m_size );
 	
 	QPixmap ico("snakenet.png");
@@ -58,6 +66,7 @@ SnakeTray::SnakeTray() : KSystemTray( 0, "SnakeTray" ),
 	connect( m_parser, SIGNAL(timeLeftReceived(int)), this, SLOT(updateTimer(int) ) );
 	connect( m_parser, SIGNAL(loginTried()),          this, SLOT(startParsing()) );
 	connect( m_parser, SIGNAL(loginAborted()),        this, SLOT(notLoggedIn()) );
+	connect( m_parser, SIGNAL(unknownContent()),      this, SLOT(unknownContent()) );
 	
 	QTimer* timer = new QTimer();
 	connect( timer, SIGNAL(timeout()), this, SLOT(tick()) );
@@ -113,14 +122,14 @@ void SnakeTray::startParsing()
 		m_progress->show();
 	}
 
-	m_parser->startParsing("http://www.snakenetmetalradio.com/heavymetallounge/requests/status2.asp");
+	m_parser->startParsing("http://www.snakenetmetalradio.com/heavymetallounge/requests/status.asp");
 }
 
 void SnakeTray::tick() { updateTimer(-1); }
 
 void SnakeTray::updateTimer(int minutes)
 {
-	qDebug( "updating timer to %i", minutes );
+	//qDebug( "updating timer to %i", minutes );
 	if( minutes > 0 )
 	{
 		m_parsing = false;
@@ -183,6 +192,13 @@ void SnakeTray::notLoggedIn()
 		m_progress->setText(tr("NA"));
 		m_progress->show();
 	}
+}
+
+void SnakeTray::unknownContent()
+{
+	qDebug("Setting unknown content");
+	m_progress->setText(tr("ERR"));
+	m_progress->show();
 }
 
 void SnakeTray::mousePressEvent(QMouseEvent* me)

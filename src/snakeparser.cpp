@@ -62,7 +62,7 @@ void SnakeParser::startParsing(const QString& url)
     }
 
 	m_snakepage = QString::null;
-    m_parsing = true;
+	m_parsing = true;
 
 	KIO::SimpleJob* cache_job = KIO::http_update_cache( url, true, 0);
 	if( cache_job )
@@ -93,7 +93,7 @@ void SnakeParser::jobData( KIO::Job* job, const QByteArray& data )
 		qDebug("Job data error");
 		job->showErrorDialog();
 		job->kill();
-        m_parsing = false;
+		m_parsing = false;
 	}
 	else if( data.size() == 0 )
 	{
@@ -119,7 +119,7 @@ void SnakeParser::parseData()
 {
 	qDebug("Parsing data...");
 	
-	QRegExp minutes("<b>([0-9]{1,4})</b> minutes");
+	QRegExp minutes("([0-9]{1,4}) minutes");
 	
 	if( m_snakepage.contains( "memberlogin.jpg" ) )
 	{
@@ -143,25 +143,43 @@ void SnakeParser::parseData()
 		qDebug( "%i minutes left", min_left );
 		emit timeLeftReceived(min_left);
 	}
+	else if( m_snakepage.contains("Less than one minute remaining") )
+	{
+		qDebug("Less than one minute remaining");
+		emit timeLeftReceived(1);
+	}
 	else if( m_snakepage.contains("You may now make a request") )
 	{
 		m_relogin = false;
 		qDebug("You may now make a request");
 		emit timeLeftReceived(0);
 	}
+	else
+	{
+		m_relogin = false;
+		qDebug("Unknown content");
+		emit unknownContent();
+	}
 }
 
 bool SnakeParser::removeCookie()
 {
+	system("dcop kded kcookiejar deleteCookiesFromDomain .snakenetmetalradio.com");
+
+	/*  For some reason this is not working
+
 	qDebug("SnakeParser::removeCookie()");
-	QByteArray domain;
+	QByteArray domain, reply;
+	QCString reply_type;
 	QDataStream arg(domain, IO_WriteOnly);
 	arg << ".snakenetmetalradio.com";
-	if( !KApplication::dcopClient()->send("kded","kcookiejar", "deleteCookiesFromDomain(QString)", domain) )
+	if( !kapp->dcopClient()->call("kded","kcookiejar", "deleteCookiesFromDomain(QString)", domain, reply_type, reply) )
 	{
 		qDebug("Could not send cookie dcop!");
 		return false;
 	}
+	*/
+
 	return true;
 }
 

@@ -65,6 +65,7 @@ class SnakeTray : public KSystemTray
 		void notLoggedIn();
 		void tick();	
 		void openSettings();
+		void unknownContent();
     
 	private:
 		/** 
