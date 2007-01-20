@@ -17,7 +17,7 @@
 SnakeLoginDialog::SnakeLoginDialog(QWidget* parent)
  : LoginDialog(parent)
 {
-    QPixmap ico("snakenet.png");
+    QPixmap ico("/usr/share/app-install/icons/snakenet.png");
     if( !ico.isNull() )
         setIcon(ico);
 }

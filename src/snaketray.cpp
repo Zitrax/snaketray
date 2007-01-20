@@ -50,7 +50,7 @@ SnakeTray::SnakeTray() : KSystemTray( 0, "SnakeTray" ),
 
 	m_progress->resize( m_size,m_size );
 	
-	QPixmap ico("snakenet.png");
+	QPixmap ico("/usr/share/app-install/icons/snakenet.png");
 	if( !ico.isNull() )
 		contextMenu()->changeTitle(-1, ico, contextMenu()->title());
 
@@ -107,7 +107,7 @@ void SnakeTray::startParsing()
 	
 	m_ready = false;
 	
-	QPixmap ico("connecting.png");
+	QPixmap ico("/usr/share/app-install/icons/connecting.png");
 	if( !ico.isNull() )
 	{
 		m_progress->hide();
@@ -159,7 +159,7 @@ void SnakeTray::updateTimer(int minutes)
 void SnakeTray::readyToRequest()
 {
 	m_ready = true;
-	QPixmap ico("snakenet.png");
+	QPixmap ico("/usr/share/app-install/icons/snakenet.png");
 	if( !ico.isNull() )
 	{
 		m_progress->hide();
@@ -177,7 +177,7 @@ void SnakeTray::readyToRequest()
 void SnakeTray::notLoggedIn()
 {
 	m_ready = false;
-	QPixmap ico("snakenet.png");
+	QPixmap ico("/usr/share/app-install/icons/snakenet.png");
 	if( !ico.isNull() )
 	{
 		QIconSet is(ico);
