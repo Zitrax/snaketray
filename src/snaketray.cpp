@@ -27,8 +27,6 @@
 #include <qfont.h>
 #include <qpixmap.h>
 #include <qtooltip.h>
-#include <kapplication.h>  // kapp
-#include <dcopclient.h>    // kapp->dcopClient()
 #include <klocale.h>
 #include <kpopupmenu.h>
 #include <kiconloader.h>
