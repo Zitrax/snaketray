@@ -71,8 +71,9 @@ class SnakeTray : public KSystemTray
 		/** 
 		 * This function tries to find a suitable 
 		 * font for the progress text.
+		 * @param test Base the test on this string
         	 */
-		void findFont();
+		void findFont( const QString& test );
 
 		QLabel* m_progress;
 		QTime* m_time;

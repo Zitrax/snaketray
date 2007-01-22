@@ -53,8 +53,6 @@ SnakeTray::SnakeTray() : KSystemTray( 0, "SnakeTray" ),
 	QPixmap ico("/usr/share/app-install/icons/snakenet.png");
 	if( !ico.isNull() )
 		contextMenu()->changeTitle(-1, ico, contextMenu()->title());
-
-	findFont();
 	
 	contextMenu()->insertItem(SmallIconSet("configure"), tr("Settings"), this, SLOT(openSettings()));
 
@@ -78,10 +76,16 @@ SnakeTray::~ SnakeTray()
 	delete m_time;
 }
 
-void SnakeTray::findFont()
+void SnakeTray::findFont( const QString& test )
 {
+	static int last_length = 0;
+	
+	if( last_length == test.length() )
+		return;
+	
+	last_length = test.length();
+	
 	QFont small("Helvetica",10);
-	QString test("000:00");
 	QFontMetrics fm(small);
 	while( fm.width(test) > m_size )
 	{
@@ -91,7 +95,7 @@ void SnakeTray::findFont()
 		if(small.pointSize() < 4)
 			break;
 	}
-    
+	
 	m_progress->setFont( small );
 }
 
@@ -148,7 +152,9 @@ void SnakeTray::updateTimer(int minutes)
 		{
 			QString sec_str;
 			sec_str.sprintf("%02d",seconds);
-			m_progress->setText( QString::number(minutes) + ":" + sec_str );
+			QString rem = QString::number(minutes) + ":" + sec_str;
+			findFont( rem );
+			m_progress->setText( rem );
 			m_progress->show();
 		}
 		else
