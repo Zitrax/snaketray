@@ -14,6 +14,10 @@
 
 #include <settings.h>
 
+#include <qsettings.h>
+#include <qcheckbox.h>
+#include <qspinbox.h>
+
 /**
  * @author Daniel Bengtsson
  *
@@ -25,14 +29,20 @@ class SnakeSettings : public Settings
 			
 	public:
 
-		SnakeSettings(QWidget* parent): Settings(parent) {}
+		SnakeSettings(QWidget* parent);
  
 		virtual ~SnakeSettings(){};
+
+		bool debug() const {return m_debugCB->isChecked();}
+		int updateInterval() const {return m_update_timer->value();}
 	
 	protected slots:
 
-		void accept(){ Settings::accept();}
-		
+		void accept(){ writeSettings(); Settings::accept();}
+	
+	private:
+		void readSettings();
+		void writeSettings();
 };
 
 #endif

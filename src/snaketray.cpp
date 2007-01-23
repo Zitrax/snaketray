@@ -1,5 +1,5 @@
 /***************************************************************************
-*   Copyright (C) 2005 by Daniel Bengtsson                                *
+*   Copyright (C) 2005-2007 by Daniel Bengtsson                           *
 *   daniel@bengtssons.info                                                *
 *                                                                         *
 *   This program is free software; you can redistribute it and/or modify  *
@@ -20,21 +20,25 @@
 
 #include "snaketray.h"
 
-#include "snakesettings.h"
-
 #include <qlabel.h>
 #include <qtimer.h>
 #include <qfont.h>
 #include <qpixmap.h>
+#include <qregexp.h>
 #include <qtooltip.h>
+#include <dcopclient.h>
+#include <kapplication.h>
 #include <klocale.h>
 #include <kpopupmenu.h>
 #include <kiconloader.h>
 
+SnakeTray* SnakeTray::s_instance = 0;
+
 SnakeTray::SnakeTray() : KSystemTray( 0, "SnakeTray" ),
       m_progress( new QLabel( this, "RequestCounter" ) ),
       m_time(new QTime()),
-      m_parser(new SnakeParser(this, "Snake Parser")),
+      m_resync_timer(new QTimer(this)),
+      m_settings(this),
       m_received_minutes(-1),
       m_ready(false),
       m_parsing(false),
@@ -43,10 +47,11 @@ SnakeTray::SnakeTray() : KSystemTray( 0, "SnakeTray" ),
 {
 	qWarning( "Starting SnakeTray" );
 	
-	/*
+	s_instance = this;
+	m_parser = new SnakeParser(this, "Snake Parser");
+	
 	kapp->dcopClient()->attach();
 	qDebug( "isAttached() = %i", kapp->dcopClient()->isAttached() );
-	*/
 
 	m_progress->resize( m_size,m_size );
 	
@@ -64,6 +69,8 @@ SnakeTray::SnakeTray() : KSystemTray( 0, "SnakeTray" ),
 	connect( m_parser, SIGNAL(loginAborted()),        this, SLOT(notLoggedIn()) );
 	connect( m_parser, SIGNAL(unknownContent()),      this, SLOT(unknownContent()) );
 	
+	connect( m_resync_timer, SIGNAL(timeout()),       this, SLOT(startParsing()) );
+
 	QTimer* timer = new QTimer();
 	connect( timer, SIGNAL(timeout()), this, SLOT(tick()) );
 	timer->start(1000);
@@ -73,34 +80,45 @@ SnakeTray::SnakeTray() : KSystemTray( 0, "SnakeTray" ),
 
 SnakeTray::~ SnakeTray()
 {
+	s_instance = 0;
 	delete m_time;
 }
 
 void SnakeTray::findFont( const QString& test )
 {
-	static int last_length = 0;
+	static unsigned int last_length = 0;
 	
 	if( last_length == test.length() )
 		return;
 	
 	last_length = test.length();
 	
+	QString test_f = test;
+	QRegExp re("[0-9]");
+	test_f.replace(re,"8");
+	
 	QFont small("Helvetica",10);
 	QFontMetrics fm(small);
-	while( fm.width(test) > m_size )
+	while( fm.width(test_f) > m_size )
 	{
-		qDebug("Font: width = %i pointsize = %i",fm.width(test), small.pointSize());
+		if(debug()) qDebug("Font: width = %i pointsize = %i",fm.width(test_f), small.pointSize());
 		small.setPointSize(small.pointSize()-1);
 		fm = QFontMetrics(small);
 		if(small.pointSize() < 4)
 			break;
 	}
-	
+    
 	m_progress->setFont( small );
 }
 
 void SnakeTray::startParsing()
 {
+	if(debug()) qDebug("Start Parsing");
+
+	// Don't bother if the screensaver is on
+	if(screenSaverOn())
+		return;
+	
 	m_parsing = true;
 	
 	if( m_ready || m_first_parse )
@@ -111,15 +129,15 @@ void SnakeTray::startParsing()
 	
 	m_ready = false;
 	
-	QPixmap ico("/usr/share/app-install/icons/connecting.png");
-	if( !ico.isNull() )
+	QMovie mov("/usr/share/app-install/icons/snakenet_anim.gif");
+	if( !mov.isNull() )
 	{
 		m_progress->hide();
-		setPixmap( ico );
+		setMovie( mov );
 	}
 	else
 	{
-		qDebug("Warning - connecting.png icon not found");
+		if(debug()) qDebug("Warning - snakenet_anim.gif icon not found");
 		m_progress->setText(tr("X"));
 		m_progress->show();
 	}
@@ -150,6 +168,7 @@ void SnakeTray::updateTimer(int minutes)
 		int seconds = (remaining - minutes)*60;
 		if( remaining > 0 )
 		{
+			m_resync_timer->stop();
 			QString sec_str;
 			sec_str.sprintf("%02d",seconds);
 			QString rem = QString::number(minutes) + ":" + sec_str;
@@ -173,16 +192,31 @@ void SnakeTray::readyToRequest()
 	}
 	else
 	{
-		qDebug("Warning - snakenet.png icon not found");
+		if(debug()) qDebug("Warning - snakenet.png icon not found");
 		m_progress->setText(tr("OK"));
 		m_progress->show();
 	}
-	
+	if( !m_resync_timer->isActive() )
+	{
+		if(debug()) 
+			qDebug("Starting timer with %i min interval.",m_settings.updateInterval());
+		m_resync_timer_interval = m_settings.updateInterval();
+		m_resync_timer->start(m_resync_timer_interval*60000);
+	}
+	else if(m_settings.updateInterval()!=m_resync_timer_interval)
+	{
+		if(debug()) qDebug("Changing interval from %i to %i",
+		                   m_resync_timer_interval,
+		                   m_settings.updateInterval());
+		m_resync_timer->changeInterval(m_settings.updateInterval()*60000);
+		m_resync_timer_interval = m_settings.updateInterval();
+	}
 }
 
 void SnakeTray::notLoggedIn()
 {
 	m_ready = false;
+	m_resync_timer->stop();
 	QPixmap ico("/usr/share/app-install/icons/snakenet.png");
 	if( !ico.isNull() )
 	{
@@ -192,7 +226,7 @@ void SnakeTray::notLoggedIn()
 	}
 	else
 	{
-		qDebug("Warning - snakenet.png icon not found");
+		if(debug()) qDebug("Warning - snakenet.png icon not found");
 		m_progress->setText(tr("NA"));
 		m_progress->show();
 	}
@@ -200,7 +234,7 @@ void SnakeTray::notLoggedIn()
 
 void SnakeTray::unknownContent()
 {
-	qDebug("Setting unknown content");
+	if(debug()) qDebug("Setting unknown content");
 	m_progress->setText(tr("ERR"));
 	m_progress->show();
 }
@@ -209,7 +243,7 @@ void SnakeTray::mousePressEvent(QMouseEvent* me)
 {
 	if( me->button() == Qt::LeftButton )
 	{
-		qDebug("Parse invoked by mousepress");
+		if(debug()) qDebug("Parse invoked by mousepress");
 		startParsing();
 	}
 	KSystemTray::mousePressEvent(me);
@@ -217,8 +251,27 @@ void SnakeTray::mousePressEvent(QMouseEvent* me)
 
 void SnakeTray::openSettings()
 {
-	SnakeSettings ss(this);
-	ss.exec();
+	m_settings.exec();
+}
+
+bool SnakeTray::screenSaverOn()
+{
+	QByteArray data,returnValue;
+	QCString returnType;
+	if (!kapp->dcopClient()->call("kdesktop","KScreensaverIface","isBlanked()",
+	                              data,returnType,returnValue,true))
+	{
+		if(debug()) qDebug("Check for screensaver failed.");
+	}
+	else if (returnType == "bool")
+	{
+		bool b;
+		QDataStream reply(returnValue,IO_ReadOnly);
+		reply >> b;
+		if(debug()) qDebug("Screensaver is %i",b);
+		return b;
+	}
+	return false;
 }
 
 #include "snaketray.moc"

@@ -1,4 +1,4 @@
-Some basic things you need:
+Some basic things you need to compile:
 
 * autoconf
 * automake 1.7 or higher
@@ -6,3 +6,6 @@ Some basic things you need:
   so you need to 'sudo ln -s /usr/lib/libkio.so.4.2.0 /usr/lib/libkio.so'
 * qt3 headers (libqt3-mt-dev package on kubuntu)
 * kde headers (kdebase-dev)
+
+Good tuturial about how to create debian package:
+* http://tldp.org/HOWTO/html_single/Debian-Binary-Package-Building-HOWTO/

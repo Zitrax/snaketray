@@ -20,6 +20,7 @@
 
 #include "snakeparser.h"
 
+#include "snaketray.h"
 #include "snakelogindialog.h"
 
 #include <iostream>
@@ -41,23 +42,23 @@ SnakeParser::SnakeParser(QObject* parent, const char* name)
 	m_pass(QString::null),
 	m_relogin(false)
 {
-	qDebug("Creating SnakeParser");
+	if(SnakeTray::debug()) qDebug("Creating SnakeParser");
 }
 
 SnakeParser::~SnakeParser()
 {
-	qDebug("Destroying SnakeParser");
-	qDebug("%s", m_snakepage.latin1() );
+	if(SnakeTray::debug()) qDebug("Destroying SnakeParser");
+	if(SnakeTray::debug()) qDebug("%s", m_snakepage.latin1() );
 	delete m_snakepage;
 }
 
 void SnakeParser::startParsing(const QString& url)
 {
-	qDebug("SnakeParser::startParsing(%s)", url.latin1());
-
+	if(SnakeTray::debug()) qDebug("SnakeParser::startParsing(%s)", url.latin1());
+	
     if( !m_login_tried && m_parsing )
     {
-        qDebug("Already parsing");
+        if(SnakeTray::debug()) qDebug("Already parsing");
         return;
     }
 
@@ -78,22 +79,30 @@ void SnakeParser::startParsing(const QString& url)
 	         this, SLOT  ( jobData( KIO::Job*, const QByteArray& ) ) );
 }
 
+void SnakeParser::jobError( KIO::Job& job)
+{
+	if(SnakeTray::debug()) qDebug("Job data error");
+	job.showErrorDialog();
+	job.kill();
+	emit loginAborted();
+	m_parsing = false;	
+}
+
 void SnakeParser::jobResult( KIO::Job* job )
 {
-	qDebug("Got a job result");
+	if(SnakeTray::debug()) qDebug("Got a job result");
 	if ( job->error() )
-		job->showErrorDialog();
+		jobError(*job);
 }
 
 void SnakeParser::jobData( KIO::Job* job, const QByteArray& data )
 {
-	qDebug("Got job data data.size = %i", data.size() );
+	if(!job) return;
+
+	if(SnakeTray::debug()) qDebug("Got job data data.size = %i", data.size() );
 	if ( job->error() )
 	{
-		qDebug("Job data error");
-		job->showErrorDialog();
-		job->kill();
-		m_parsing = false;
+		jobError(*job);
 	}
 	else if( data.size() == 0 )
 	{
@@ -112,21 +121,21 @@ void SnakeParser::jobData( KIO::Job* job, const QByteArray& data )
 	
 	QCString str(data,data.size()+1);
 	m_snakepage.append(str);
-	qDebug("m_snakepage now contains %i chars", m_snakepage.length() );
+	if(SnakeTray::debug()) qDebug("m_snakepage now contains %i chars", m_snakepage.length() );
 }
 
 void SnakeParser::parseData()
 {
-	qDebug("Parsing data...");
+	if(SnakeTray::debug()) qDebug("Parsing data...");
 	
 	QRegExp minutes("([0-9]{1,4}) minutes");
 	
 	if( m_snakepage.contains( "memberlogin.jpg" ) )
 	{
-		qDebug("It's the login page");
+		if(SnakeTray::debug()) qDebug("It's the login page");
 		if( !m_relogin && !m_user.isEmpty() && !m_pass.isEmpty() )
 		{
-			qDebug("Will try to relogin using old info...");
+			if(SnakeTray::debug()) qDebug("Will try to relogin using old info...");
 			m_relogin = true;
 			login( m_user, m_pass );
 		}
@@ -140,24 +149,25 @@ void SnakeParser::parseData()
 	{
 		m_relogin = false;
 		int min_left = minutes.cap(1).toInt();
-		qDebug( "%i minutes left", min_left );
+		if(SnakeTray::debug()) qDebug( "%i minutes left", min_left );
 		emit timeLeftReceived(min_left);
 	}
 	else if( m_snakepage.contains("Less than one minute remaining") )
 	{
-		qDebug("Less than one minute remaining");
+		m_relogin = false;
+		if(SnakeTray::debug()) qDebug("Less than one minute remaining");
 		emit timeLeftReceived(1);
 	}
 	else if( m_snakepage.contains("You may now make a request") )
 	{
 		m_relogin = false;
-		qDebug("You may now make a request");
+		if(SnakeTray::debug()) qDebug("You may now make a request");
 		emit timeLeftReceived(0);
 	}
 	else
 	{
 		m_relogin = false;
-		qDebug("Unknown content");
+		if(SnakeTray::debug()) qDebug("Unknown content");
 		emit unknownContent();
 	}
 }
@@ -188,11 +198,12 @@ void SnakeParser::login(const QString& user, const QString& pass)
 	// When this work we should enable removeCookie()
 	removeCookie();
 
-	m_user = user; m_pass = pass;
+	m_user = user; 
+	m_pass = pass;
 
 	QString login_url("http://www.snakenetmetalradio.com/heavymetallounge/login.asp");
 	login_url = login_url + "?email=" + user + "&password=" + pass;
-	qDebug("Will login using - " + login_url);
+	if(SnakeTray::debug()) qDebug("Will login using - " + login_url);
 	m_login_tried = true;
 	startParsing(login_url);
 }

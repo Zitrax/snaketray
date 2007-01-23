@@ -1,0 +1,6 @@
+1.1 (2007-01-23)
+* settings (resynctimer and debug)
+* do not resync when screensaver is on
+* better error handling
+* animated resync icon
+* better font size handler

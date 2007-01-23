@@ -1,5 +1,5 @@
 /***************************************************************************
- *   Copyright (C) 2005 by Daniel Bengtsson                                *
+ *   Copyright (C) 2005-2007 by Daniel Bengtsson                           *
  *   daniel@bengtssons.info                                                *
  *                                                                         *
  *   This program is free software; you can redistribute it and/or modify  *
@@ -29,11 +29,12 @@
 #include <qlabel.h>
 
 #include "snakeparser.h"
+#include "snakesettings.h"
 
 /**
  * @short Application Main Window
  * @author Daniel Bengtsson <daniel@bengtssons.info>
- * @version 0.1
+ * @version 1.1
  *
  * This is the class that shows up in the tray as a small icon.
  * It will be filled with the remaining minutes that will count
@@ -46,9 +47,14 @@ class SnakeTray : public KSystemTray
 {
 	Q_OBJECT
 	public:
-		SnakeTray();
 		virtual ~SnakeTray();
 
+		static bool debug() { return s_instance->_debug(); }
+		static SnakeTray* create() 
+		{ if(!s_instance) new SnakeTray(); return s_instance; }
+
+		bool screenSaverOn();
+	
 	public slots:
 		void startParsing();
 
@@ -56,7 +62,7 @@ class SnakeTray : public KSystemTray
 		{ m_update_timer = minutes; }
 
 	protected:
-
+		SnakeTray();
 		void mousePressEvent(QMouseEvent* me);
     
 	private slots:
@@ -75,9 +81,16 @@ class SnakeTray : public KSystemTray
         	 */
 		void findFont( const QString& test );
 
+		bool _debug() const { return m_settings.debug(); }
+
+		static SnakeTray* s_instance;
+
 		QLabel* m_progress;
 		QTime* m_time;
+		QTimer* m_resync_timer;
+		int m_resync_timer_interval;
 		SnakeParser* m_parser;
+		SnakeSettings m_settings;
 		int m_received_minutes;
 		bool m_ready; // true if we are ready to request
 		bool m_parsing; // currently parsing

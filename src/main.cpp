@@ -38,7 +38,7 @@ static const char version[] = "0.1";
 	int main(int argc, char **argv)
 	{
 	KAboutData about("snaketray", I18N_NOOP("SnakeTray"), version, description,
-			KAboutData::License_GPL, "(C) 2005-2006 Daniel Bengtsson", 0, 0,
+			KAboutData::License_GPL, "(C) 2005-2007 Daniel Bengtsson", 0, 0,
 			"daniel@bengtssons.info");
 	about.addAuthor( "Daniel Bengtsson", 0, "daniel@bengtssons.info" );
 	KCmdLineArgs::init(argc, argv, &about);
@@ -57,7 +57,7 @@ else
 
 	/// @todo do something with the command line args here
 
-	mainWin = new SnakeTray();
+	mainWin = SnakeTray::create();
 	app.setMainWidget( mainWin );
 	mainWin->show();
 

@@ -72,8 +72,12 @@ class SnakeParser : public QObject
 	         * If it is the requestpage the remaining minutes will be parsed.
 		 */
 		void parseData();
+		/**
+		 * Properly report a job error
+		 */
+		void jobError( KIO::Job& job );
          	/**
-		 * Will popup a dialog with fields for username and passwors, 
+		 * Will popup a dialog with fields for username and password 
 		 * where you are asked to login.
 		 */
 		void login();
