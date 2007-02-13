@@ -27,6 +27,7 @@
 #include <qregexp.h>
 #include <qtooltip.h>
 #include <dcopclient.h>
+#include <kaboutdialog.h>
 #include <kapplication.h>
 #include <klocale.h>
 #include <kpopupmenu.h>
@@ -57,10 +58,15 @@ SnakeTray::SnakeTray() : KSystemTray( 0, "SnakeTray" ),
 	
 	QPixmap ico("/usr/share/app-install/icons/snakenet.png");
 	if( !ico.isNull() )
-		contextMenu()->changeTitle(-1, ico, contextMenu()->title());
+		contextMenu()->changeTitle(contextMenu()->idAt(0), ico, "SnakeTray");
 	
 	contextMenu()->insertItem(SmallIconSet("configure"), tr("Settings"), this, SLOT(openSettings()));
-
+	contextMenu()->insertItem(SmallIconSet("info"), tr("About"), this, SLOT(about()));
+	
+	QCheckBox* disable_box = new QCheckBox("Disabled",contextMenu());
+	contextMenu()->insertItem( disable_box );
+	connect( disable_box, SIGNAL( toggled(bool) ), this, SLOT( disable(bool) ));
+	
 	QToolTip::add( m_progress, tr("Left-click to resync the timer with the server.") );
 	QToolTip::add( this,       tr("Left-click to resync the timer with the server.") );
 
@@ -272,6 +278,26 @@ bool SnakeTray::screenSaverOn()
 		return b;
 	}
 	return false;
+}
+
+void SnakeTray::about()
+{
+	KAboutDialog about;
+	QPixmap logo("/usr/share/app-install/icons/snakenet.png");
+	about.setLogo(logo);
+	about.setAuthor("Programmed by: Daniel Bengtsson","daniel@bengtssons.info","http://www.bengtssons.info/daniel","");
+	about.setVersion("SnakeTray Version 1.2");
+	about.exec();
+}
+
+void SnakeTray::disable(bool dis)
+{
+	if(dis)
+		notLoggedIn();
+	else
+		startParsing();
+	
+	contextMenu()->close();
 }
 
 #include "snaketray.moc"

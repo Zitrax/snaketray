@@ -72,6 +72,8 @@ class SnakeTray : public KSystemTray
 		void tick();	
 		void openSettings();
 		void unknownContent();
+		void about();
+		void disable(bool dis);
     
 	private:
 		/** 
