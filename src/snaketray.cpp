@@ -39,6 +39,7 @@ SnakeTray::SnakeTray() : KSystemTray( 0, "SnakeTray" ),
       m_progress( new QLabel( this, "RequestCounter" ) ),
       m_time(new QTime()),
       m_resync_timer(new QTimer(this)),
+      m_disable_checkbox(0),
       m_settings(this),
       m_received_minutes(-1),
       m_ready(false),
@@ -63,9 +64,9 @@ SnakeTray::SnakeTray() : KSystemTray( 0, "SnakeTray" ),
 	contextMenu()->insertItem(SmallIconSet("configure"), tr("Settings"), this, SLOT(openSettings()));
 	contextMenu()->insertItem(SmallIconSet("info"), tr("About"), this, SLOT(about()));
 	
-	QCheckBox* disable_box = new QCheckBox("Disabled",contextMenu());
-	contextMenu()->insertItem( disable_box );
-	connect( disable_box, SIGNAL( toggled(bool) ), this, SLOT( disable(bool) ));
+	m_disable_checkbox = new QCheckBox("Disabled",contextMenu());
+	contextMenu()->insertItem( m_disable_checkbox );
+	connect( m_disable_checkbox, SIGNAL( toggled(bool) ), this, SLOT( disable(bool) ));
 	
 	QToolTip::add( m_progress, tr("Left-click to resync the timer with the server.") );
 	QToolTip::add( this,       tr("Left-click to resync the timer with the server.") );
@@ -126,6 +127,7 @@ void SnakeTray::startParsing()
 		return;
 	
 	m_parsing = true;
+	m_disable_checkbox->setChecked(false);
 	
 	if( m_ready || m_first_parse )
 	{
