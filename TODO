@@ -2,3 +2,5 @@
 * About dialog to display version
 * Auto-check for new version
 * Disabling
+* Make rpm's
+* Make the deb use fewer dependencies
