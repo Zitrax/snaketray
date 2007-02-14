@@ -1,3 +1,10 @@
+1.2
+* Setting to avoid display of seconds 
+* About dialog to display version number
+* Possibility to disable the application
+* Save password and username between sessions in KWallet
+* Avoid using 0 minutes intervals (which made SnakeTray go nuts)
+
 1.1 (2007-01-23)
 * settings (resynctimer and debug)
 * do not resync when screensaver is on
