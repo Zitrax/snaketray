@@ -3,6 +3,7 @@ Todo:
 * Auto-check for new version
 * Make rpm's
 * Make the deb use fewer dependencies
+* Can we display a faint snakelogo behind the seconds to not anonymize ourselfes ?
 
 Done:
 * Setting to avoid display of seconds 
