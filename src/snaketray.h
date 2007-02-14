@@ -50,6 +50,7 @@ class SnakeTray : public KSystemTray
 		virtual ~SnakeTray();
 
 		static bool debug() { return s_instance->_debug(); }
+		static SnakeSettings& settings() { return s_instance->m_settings; }
 		static SnakeTray* create() 
 		{ if(!s_instance) new SnakeTray(); return s_instance; }
 

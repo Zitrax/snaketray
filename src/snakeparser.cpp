@@ -201,7 +201,7 @@ void SnakeParser::login(const QString& user, const QString& pass)
 	m_user = user; 
 	m_pass = pass;
 
-	if( true /*we save passwords*/ )
+	if( SnakeTray::settings().wallet() )
 	{
 		// Check if we have this entry in the wallet
 		KWallet::Wallet* wallet = KWallet::Wallet::openWallet( "kdewallet" );
@@ -239,7 +239,7 @@ void SnakeParser::login()
 	// First check if we have stored passwords in kwallet
 	
 	KWallet::Wallet* wallet = 0;
-	if( true /*we save passwords*/ )
+	if( SnakeTray::settings().wallet() )
 	{
 		wallet = KWallet::Wallet::openWallet( "kdewallet" );
 	}

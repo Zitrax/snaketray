@@ -24,6 +24,7 @@ void SnakeSettings::readSettings()
 	settings.setPath("sourceforge.net/projects/snaketray/","snaketray");
 	m_debugCB->setChecked(settings.readBoolEntry("/snaketray/debug",false));
 	m_secondsCB->setChecked(settings.readBoolEntry("/snaketray/seconds",true));
+	m_walletCB->setChecked(settings.readBoolEntry("/snaketray/wallet",true));
 	m_update_timer->setValue(settings.readNumEntry("/snaketray/update_timer",5));
 }
 
@@ -33,5 +34,6 @@ void SnakeSettings::writeSettings()
 	settings.setPath("sourceforge.net/projects/snaketray/","snaketray");
 	settings.writeEntry("/snaketray/debug",debug());
 	settings.writeEntry("/snaketray/seconds",seconds());
+	settings.writeEntry("/snaketray/wallet",wallet());
 	settings.writeEntry("/snaketray/update_timer",updateInterval());
 }
