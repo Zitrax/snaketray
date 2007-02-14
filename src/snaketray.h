@@ -91,6 +91,7 @@ class SnakeTray : public KSystemTray
 		QTime* m_time;
 		QTimer* m_resync_timer;
 		QCheckBox* m_disable_checkbox;
+		bool m_disabled;
 		int m_resync_timer_interval;
 		SnakeParser* m_parser;
 		SnakeSettings m_settings;

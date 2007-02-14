@@ -40,6 +40,7 @@ SnakeTray::SnakeTray() : KSystemTray( 0, "SnakeTray" ),
       m_time(new QTime()),
       m_resync_timer(new QTimer(this)),
       m_disable_checkbox(0),
+      m_disabled(false),
       m_settings(this),
       m_received_minutes(-1),
       m_ready(false),
@@ -157,7 +158,9 @@ void SnakeTray::tick() { updateTimer(-1); }
 
 void SnakeTray::updateTimer(int minutes)
 {
-	//qDebug( "updating timer to %i", minutes );
+	if( m_disabled )
+		return;
+
 	if( minutes > 0 )
 	{
 		m_parsing = false;
@@ -303,6 +306,8 @@ void SnakeTray::about()
 
 void SnakeTray::disable(bool dis)
 {
+	m_disabled = dis;
+
 	if(dis)
 		notLoggedIn();
 	else
