@@ -179,7 +179,11 @@ void SnakeTray::updateTimer(int minutes)
 			m_resync_timer->stop();
 			QString sec_str;
 			sec_str.sprintf("%02d",seconds);
-			QString rem = QString::number(minutes) + ":" + sec_str;
+			QString rem;
+			if( m_settings.seconds() )
+				rem = QString::number(minutes) + ":" + sec_str;
+			else
+				rem = QString::number(minutes);
 			findFont( rem );
 			m_progress->setText( rem );
 			m_progress->show();

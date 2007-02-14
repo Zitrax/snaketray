@@ -177,7 +177,6 @@ bool SnakeParser::removeCookie()
 	system("dcop kded kcookiejar deleteCookiesFromDomain .snakenetmetalradio.com");
 
 	/*  For some reason this is not working
-
 	qDebug("SnakeParser::removeCookie()");
 	QByteArray domain, reply;
 	QCString reply_type;

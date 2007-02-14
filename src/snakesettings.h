@@ -34,6 +34,7 @@ class SnakeSettings : public Settings
 		virtual ~SnakeSettings(){};
 
 		bool debug() const {return m_debugCB->isChecked();}
+		bool seconds() const { return m_secondsCB->isChecked();}
 		int updateInterval() const {return m_update_timer->value();}
 	
 	protected slots:
