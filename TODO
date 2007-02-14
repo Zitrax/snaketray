@@ -1,6 +1,10 @@
-* Setting to avoid display of seconds 
-* About dialog to display version
+Todo:
+* Save password and username between sessions
 * Auto-check for new version
-* Disabling
 * Make rpm's
 * Make the deb use fewer dependencies
+
+Done:
+* Setting to avoid display of seconds 
+* About dialog to display version
+* Disabling
