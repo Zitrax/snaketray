@@ -183,7 +183,12 @@ void SnakeTray::updateTimer(int minutes)
 			if( m_settings.seconds() )
 				rem = QString::number(minutes) + ":" + sec_str;
 			else
-				rem = QString::number(minutes);
+			{
+				if( minutes == 0 )
+					rem = QString::number(seconds);
+				else
+					rem = QString::number(minutes);
+			}
 			findFont( rem );
 			m_progress->setText( rem );
 			m_progress->show();
@@ -292,7 +297,7 @@ void SnakeTray::about()
 	QPixmap logo("/usr/share/app-install/icons/snakenet.png");
 	about.setLogo(logo);
 	about.setAuthor("Programmed by: Daniel Bengtsson","daniel@bengtssons.info","http://www.bengtssons.info/daniel","");
-	about.setVersion("SnakeTray Version 1.2");
+	about.setVersion("SnakeTray Version 1.2 (2006-2007)");
 	about.exec();
 }
 

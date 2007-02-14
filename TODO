@@ -1,11 +1,13 @@
 Todo:
-* Save password and username between sessions
 * Auto-check for new version
 * Make rpm's
 * Make the deb use fewer dependencies
 * Can we display a faint snakelogo behind the seconds to not anonymize ourselfes ?
+* How do this work if you have not donated ?
+* Autostart
 
 Done:
 * Setting to avoid display of seconds 
 * About dialog to display version
 * Disabling
+* Save password and username between sessions

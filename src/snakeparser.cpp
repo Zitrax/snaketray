@@ -30,6 +30,8 @@
 
 #include <kio/scheduler.h>
 #include <kapplication.h>
+#include <kmessagebox.h>
+#include <kwallet.h>
 #include <dcopclient.h>
 
 using namespace std;
@@ -194,11 +196,36 @@ bool SnakeParser::removeCookie()
 
 void SnakeParser::login(const QString& user, const QString& pass)
 {
-	// When this work we should enable removeCookie()
 	removeCookie();
 
 	m_user = user; 
 	m_pass = pass;
+
+	if( true /*we save passwords*/ )
+	{
+		// Check if we have this entry in the wallet
+		KWallet::Wallet* wallet = KWallet::Wallet::openWallet( "kdewallet" );
+		if( wallet )
+		{
+			if( !wallet->hasFolder("SnakeTray") )
+				wallet->createFolder("SnakeTray");
+			if( wallet->setFolder("SnakeTray") )
+			{
+				QString wuser, wpass;
+				wallet->readPassword("User",wuser);
+				wallet->readPassword("Pass",wpass);
+				if( (wuser!=user) || (wpass!=pass) )
+				{
+					if( KMessageBox::questionYesNo(0,"Do you want to save the password in the wallet?","Store password")
+						== KMessageBox::Yes )
+					{
+						wallet->writePassword("User",user);
+						wallet->writePassword("Pass",pass);
+					}
+				} 
+			}
+		}
+	}
 
 	QString login_url("http://www.snakenetmetalradio.com/heavymetallounge/login.asp");
 	login_url = login_url + "?email=" + user + "&password=" + pass;
@@ -209,6 +236,30 @@ void SnakeParser::login(const QString& user, const QString& pass)
 
 void SnakeParser::login()
 {
+	// First check if we have stored passwords in kwallet
+	
+	KWallet::Wallet* wallet = 0;
+	if( true /*we save passwords*/ )
+	{
+		wallet = KWallet::Wallet::openWallet( "kdewallet" );
+	}
+
+	if( wallet )
+	{
+		if( wallet->setFolder("SnakeTray") )
+		{
+			QString user, pass;
+			wallet->readPassword("User",user);
+			wallet->readPassword("Pass",pass);
+			if(SnakeTray::debug()) qDebug("Wallet : '" + user + "','" + pass + "'");
+			if( !user.isEmpty() && !pass.isEmpty() )
+			{
+				login(user,pass);
+				return;
+			}
+		}
+	}
+
 	SnakeLoginDialog dialog(0);
 	connect(&dialog, SIGNAL(login(const QString&, const QString& )),
 		this,      SLOT(login(const QString&, const QString& )));
