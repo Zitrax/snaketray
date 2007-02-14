@@ -66,6 +66,9 @@
             <property name="name">
                 <cstring>m_update_timer</cstring>
             </property>
+            <property name="minValue">
+                <number>1</number>
+            </property>
             <property name="toolTip" stdset="0">
                 <string>Time between resync with the server when no time is known</string>
             </property>
@@ -83,10 +86,10 @@
                 <cstring>m_debugCB</cstring>
             </property>
             <property name="text">
-                <string>Console debu&amp;g</string>
+                <string>Console de&amp;bug</string>
             </property>
             <property name="accel">
-                <string>Alt+G</string>
+                <string>Alt+B</string>
             </property>
             <property name="toolTip" stdset="0">
                 <string>Note that this will print your password in cleartext</string>
