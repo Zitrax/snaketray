@@ -106,7 +106,7 @@
                 <string></string>
             </property>
             <property name="toolTip" stdset="0">
-                <string>Note that this will print your password in cleartext</string>
+                <string>Display of remaining minutes with or without the seconds</string>
             </property>
         </widget>
         <widget class="QCheckBox" row="2" column="0" rowspan="1" colspan="2">
@@ -120,7 +120,7 @@
                 <string></string>
             </property>
             <property name="toolTip" stdset="0">
-                <string>Note that this will print your password in cleartext</string>
+                <string>If you do not want the wallet to store your password you can disable that here</string>
             </property>
         </widget>
     </grid>
