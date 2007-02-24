@@ -1,5 +1,4 @@
 Todo:
-* Auto-check for new version
 * Make rpm's
 * Make the deb use fewer dependencies
 * Can we display a faint snakelogo behind the seconds to not anonymize ourselfes ?
@@ -11,3 +10,4 @@ Done:
 * About dialog to display version
 * Disabling
 * Save password and username between sessions
+* Auto-check for new version
