@@ -1,0 +1,8 @@
+Package: snaketray
+Version: 1.0-1
+Section: base
+Priority: optional
+Architecture: all
+Depends: kdelibs4c2a, libgamin0, libacl1, libattr1, libc6-i686, libart-2.0-2, libidn11, libqt3-mt, libxt6, libjpeg62, libaudio2, libxi6, libxrandr2, libxcursor1, libxinerama1, libxft2, libfreetype6, libfontconfig1, libc6-i686, libpng12-0, zlib1g, libxext6, libx11-6, libsm6, libice6, libc6-i686, libxrender1, libstdc++6, libc6-i686, libgcc1, libc6-i686, libxfixes3, libexpat1, libc6, libxau6
+Maintainer: Daniel Bengtsson <daniel@bengtssons.info>
+Description: Request countdown as a KDE tray application for www.snakenetmetalradio.com.
