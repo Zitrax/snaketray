@@ -20,6 +20,8 @@
 
 #include "snaketray.h"
 
+#include "snakeupdatechecker.h"
+
 #include <qlabel.h>
 #include <qtimer.h>
 #include <qfont.h>
@@ -79,10 +81,13 @@ SnakeTray::SnakeTray() : KSystemTray( 0, "SnakeTray" ),
 	
 	connect( m_resync_timer, SIGNAL(timeout()),       this, SLOT(startParsing()) );
 
+	SnakeUpdateChecker* uc = new SnakeUpdateChecker(this,"http://snaketray.sourceforge.net/version.txt", SnakeTray::currentVersion() );
+	QTimer::singleShot( 60000, uc, SLOT(check()) );
+	
 	QTimer* timer = new QTimer();
 	connect( timer, SIGNAL(timeout()), this, SLOT(tick()) );
 	timer->start(1000);
- 
+	
 	startParsing();
 }
 
@@ -300,7 +305,7 @@ void SnakeTray::about()
 	QPixmap logo("/usr/share/app-install/icons/snakenet.png");
 	about.setLogo(logo);
 	about.setAuthor("Programmed by: Daniel Bengtsson","daniel@bengtssons.info","http://www.bengtssons.info/daniel","");
-	about.setVersion("SnakeTray Version 1.2 (2006-2007)");
+	about.setVersion("SnakeTray Version " + SnakeTray::currentVersion() + " (2006-2007)");
 	about.exec();
 }
 
@@ -314,6 +319,11 @@ void SnakeTray::disable(bool dis)
 		startParsing();
 	
 	contextMenu()->close();
+}
+
+void SnakeTray::checkForUpdate()
+{
+	
 }
 
 #include "snaketray.moc"
