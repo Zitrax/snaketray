@@ -24,7 +24,7 @@ SnakeUpdateChecker::SnakeUpdateChecker(QObject* parent, const QString& updateURL
 
 void SnakeUpdateChecker::check()
 {
-	if(SnakeTray::debug()) qDebug("Starting SnakeUpdateChecker on '" + m_update_url + "'");
+	if(SnakeTray::debug()) qDebug("Starting SnakeUpdateChecker on '%s'",m_update_url.latin1());
 	m_page = QString::null;
 	KIO::TransferJob* job = KIO::get( m_update_url, true, false );
 	connect( job,  SIGNAL( result( KIO::Job* ) ), 
@@ -33,13 +33,13 @@ void SnakeUpdateChecker::check()
 	         this, SLOT  ( jobData( KIO::Job*, const QByteArray& ) ) );
 }
 
-void SnakeUpdateChecker::jobResult( KIO::Job* job )
+void SnakeUpdateChecker::jobResult( KIO::Job* /*job*/ )
 {
 }
 
 void SnakeUpdateChecker::findVersion()
 {
-if(SnakeTray::debug()) qDebug("Latest version is '" + m_page + "' INT: " + QString::number(m_page.toFloat()) + ">" + QString::number(m_current_version.toFloat()));
+	if(SnakeTray::debug()) qDebug("Latest version is '%s' (%s>%s)",m_page.latin1(),QString::number(m_page.toFloat()).latin1(),QString::number(m_current_version.toFloat()).latin1());
  
 	if( m_page.isEmpty() )
 		return;

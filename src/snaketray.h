@@ -66,9 +66,9 @@ class SnakeTray : public KSystemTray
 		{ m_update_timer = minutes; }
 
 	protected:
-		SnakeTray();
+		SnakeTray();	
 		void mousePressEvent(QMouseEvent* me);
-    
+
 	private slots:
 		void updateTimer(int minutes);
 		void readyToRequest();
@@ -79,8 +79,13 @@ class SnakeTray : public KSystemTray
 		void about();
 		void disable(bool dis);
 		void playStream();
-    
+ 
 	private:
+	
+		// Forbid copying and assignment
+		SnakeTray(const SnakeTray&);
+		SnakeTray& operator=(const SnakeTray&);
+	
 		/** 
 		 * This function tries to find a suitable 
 		 * font for the progress text.

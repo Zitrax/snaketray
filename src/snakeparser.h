@@ -1,5 +1,5 @@
 /***************************************************************************
- *   Copyright (C) 2005 by Daniel Bengtsson                                *
+ *   Copyright (C) 2006-2007 by Daniel Bengtsson                           *
  *   daniel@bengtssons.info                                                *
  *                                                                         *
  *   This program is free software; you can redistribute it and/or modify  *
@@ -43,22 +43,27 @@ class SnakeParser : public QObject
 		 * @param url The url to retrieve
 	         */
 		void startParsing(const QString& url);
+	
 		/**
 		 * Removes the snakenet cookie
 		 * @param <b>true</b> if the dcop message was sent, false otherwise
 		 */
 		bool removeCookie();
+	
 	private slots:
+	
 	        /**
 	         * Will check for errors of the job
 	         */
 		void jobResult( KIO::Job* job );
+	
 	        /**
 		 * Chunks of data arrive in this slot. When data->size() == 0
 		 * we are done and can start parse the data using
 		 * parseData()
 		 */
 		void jobData( KIO::Job* job, const QByteArray& data );
+	
          	/**
 		 * Will try to login to snakenet using...
 		 * @param user The username

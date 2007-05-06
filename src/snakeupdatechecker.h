@@ -16,6 +16,14 @@
 #include <qobject.h>
 #include <kio/job.h>
 
+/**
+ * This class checks if there is a new version of the program available
+ * by looking up the url provided in the constructor.
+ *
+ * You simply create an object of the class and call check, the default
+ * implementation gives you a dialog, but you can also listen to the
+ * signal updateAvailable().
+ */
 class SnakeUpdateChecker : public QObject
 {
 	Q_OBJECT
@@ -29,10 +37,12 @@ signals:
 	void updateAvailable(const QString& version);
 	
 private slots:
+	
        /**
         * Will check for errors of the job
         */
 	void jobResult( KIO::Job* job );
+	
        /**
         * Chunks of data arrive in this slot. When data->size() == 0
 	* we are done and can start parse the data using

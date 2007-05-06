@@ -229,7 +229,7 @@ void SnakeParser::login(const QString& user, const QString& pass)
 
 	QString login_url("http://www.snakenetmetalradio.com/heavymetallounge/login.asp");
 	login_url = login_url + "?email=" + user + "&password=" + pass;
-	if(SnakeTray::debug()) qDebug("Will login using - " + login_url);
+	if(SnakeTray::debug()) qDebug("Will login using - '%s'",login_url.latin1());
 	m_login_tried = true;
 	startParsing(login_url);
 }
@@ -251,7 +251,7 @@ void SnakeParser::login()
 			QString user, pass;
 			wallet->readPassword("User",user);
 			wallet->readPassword("Pass",pass);
-			if(SnakeTray::debug()) qDebug("Wallet : '" + user + "','" + pass + "'");
+			if(SnakeTray::debug()) qDebug("Wallet : '%s','%s'",user.latin1(),pass.latin1());
 			if( !user.isEmpty() && !pass.isEmpty() )
 			{
 				login(user,pass);

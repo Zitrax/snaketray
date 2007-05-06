@@ -138,6 +138,8 @@ void SnakeTray::startParsing()
 		return;
 	
 	m_parsing = true;
+	
+	m_disabled = false;
 	m_disable_action->setChecked(false);
 	
 	if( m_ready || m_first_parse )
@@ -186,7 +188,7 @@ void SnakeTray::updateTimer(int minutes)
 		// Update countdown	
 		float remaining = m_received_minutes-(m_time->elapsed()/60000.0);
 		int minutes = static_cast<int>(remaining);
-		int seconds = (remaining - minutes)*60;
+		int seconds = static_cast<int>((remaining - minutes)*60);
 		if( remaining > 0 )
 		{
 			m_resync_timer->stop();
@@ -322,8 +324,6 @@ void SnakeTray::disable(bool dis)
 		notLoggedIn();
 	else
 		startParsing();
-	
-	contextMenu()->close();
 }
 
 void SnakeTray::playStream()
