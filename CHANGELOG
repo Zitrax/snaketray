@@ -1,4 +1,5 @@
 1.3 (2007-05-06)
+* Fixed bug during manually initiated resync from disabled state.
 * Better looking disable menu entry
 * Menu entry for starting the stream
 * Checkbox for disabling new version check
