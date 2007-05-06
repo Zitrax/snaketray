@@ -25,6 +25,7 @@
 #include <config.h>
 #endif
 
+#include <kactionclasses.h>
 #include <ksystemtray.h>
 #include <qlabel.h>
 
@@ -94,7 +95,7 @@ class SnakeTray : public KSystemTray
 		QLabel* m_progress;
 		QTime* m_time;
 		QTimer* m_resync_timer;
-		QCheckBox* m_disable_checkbox;
+		KToggleAction* m_disable_action;
 		bool m_disabled;
 		int m_resync_timer_interval;
 		SnakeParser* m_parser;
