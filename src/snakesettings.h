@@ -37,6 +37,7 @@ class SnakeSettings : public Settings
 		bool seconds() const { return m_secondsCB->isChecked();}
 		bool wallet() const { return m_walletCB->isChecked(); }
 		int updateInterval() const {return m_update_timer->value();}
+		bool checkForUpdates() const { return m_updatesCB->isChecked();}
 	
 	protected slots:
 

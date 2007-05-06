@@ -9,7 +9,7 @@
             <x>0</x>
             <y>0</y>
             <width>285</width>
-            <height>161</height>
+            <height>189</height>
         </rect>
     </property>
     <property name="caption">
@@ -19,7 +19,21 @@
         <property name="name">
             <cstring>unnamed</cstring>
         </property>
-        <widget class="QLayoutWidget" row="4" column="0" rowspan="1" colspan="2">
+        <widget class="QCheckBox" row="1" column="0">
+            <property name="name">
+                <cstring>m_updatesCB</cstring>
+            </property>
+            <property name="text">
+                <string>Check for updates</string>
+            </property>
+            <property name="accel">
+                <string></string>
+            </property>
+            <property name="toolTip" stdset="0">
+                <string>Checks if there is a new version on startup</string>
+            </property>
+        </widget>
+        <widget class="QLayoutWidget" row="5" column="0">
             <property name="name">
                 <cstring>layout2</cstring>
             </property>
@@ -51,6 +65,9 @@
                     <property name="text">
                         <string>O&amp;k</string>
                     </property>
+                    <property name="accel">
+                        <string>Alt+K</string>
+                    </property>
                 </widget>
                 <widget class="QPushButton">
                     <property name="name">
@@ -62,40 +79,7 @@
                 </widget>
             </hbox>
         </widget>
-        <widget class="QSpinBox" row="3" column="1">
-            <property name="name">
-                <cstring>m_update_timer</cstring>
-            </property>
-            <property name="minValue">
-                <number>1</number>
-            </property>
-            <property name="toolTip" stdset="0">
-                <string>Time between resync with the server when no time is known</string>
-            </property>
-        </widget>
-        <widget class="QLabel" row="3" column="0">
-            <property name="name">
-                <cstring>textLabel1</cstring>
-            </property>
-            <property name="text">
-                <string>Update timer</string>
-            </property>
-        </widget>
-        <widget class="QCheckBox" row="0" column="0" rowspan="1" colspan="2">
-            <property name="name">
-                <cstring>m_debugCB</cstring>
-            </property>
-            <property name="text">
-                <string>Console de&amp;bug</string>
-            </property>
-            <property name="accel">
-                <string>Alt+B</string>
-            </property>
-            <property name="toolTip" stdset="0">
-                <string>Note that this will print your password in cleartext</string>
-            </property>
-        </widget>
-        <widget class="QCheckBox" row="1" column="0" rowspan="1" colspan="2">
+        <widget class="QCheckBox" row="2" column="0">
             <property name="name">
                 <cstring>m_secondsCB</cstring>
             </property>
@@ -109,19 +93,62 @@
                 <string>Display of remaining minutes with or without the seconds</string>
             </property>
         </widget>
-        <widget class="QCheckBox" row="2" column="0" rowspan="1" colspan="2">
+        <widget class="QCheckBox" row="0" column="0">
+            <property name="name">
+                <cstring>m_debugCB</cstring>
+            </property>
+            <property name="text">
+                <string>Console de&amp;bug</string>
+            </property>
+            <property name="accel">
+                <string>Alt+B</string>
+            </property>
+            <property name="toolTip" stdset="0">
+                <string>Note that this will print your password in cleartext</string>
+            </property>
+        </widget>
+        <widget class="QCheckBox" row="3" column="0">
             <property name="name">
                 <cstring>m_walletCB</cstring>
             </property>
             <property name="text">
-                <string>Use the wallet to store your password</string>
+                <string>&amp;Use the wallet to store your password</string>
             </property>
             <property name="accel">
-                <string></string>
+                <string>Alt+U</string>
             </property>
             <property name="toolTip" stdset="0">
                 <string>If you do not want the wallet to store your password you can disable that here</string>
             </property>
+        </widget>
+        <widget class="QLayoutWidget" row="4" column="0">
+            <property name="name">
+                <cstring>layout5</cstring>
+            </property>
+            <hbox>
+                <property name="name">
+                    <cstring>unnamed</cstring>
+                </property>
+                <widget class="QLabel">
+                    <property name="name">
+                        <cstring>textLabel1</cstring>
+                    </property>
+                    <property name="text">
+                        <string>Update timer</string>
+                    </property>
+                </widget>
+                <widget class="QSpinBox">
+                    <property name="name">
+                        <cstring>m_update_timer</cstring>
+                    </property>
+                    <property name="minValue">
+                        <number>1</number>
+                    </property>
+                    <property name="toolTip" stdset="0">
+                        <string>Time between resync with the server when no time is known</string>
+                    </property>
+                </widget>
+            </hbox>
         </widget>
     </grid>
 </widget>

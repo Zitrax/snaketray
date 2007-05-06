@@ -59,6 +59,7 @@ SnakeTray::SnakeTray() : KSystemTray( 0, "SnakeTray" ),
 	qDebug( "isAttached() = %i", kapp->dcopClient()->isAttached() );
 
 	m_progress->resize( m_size,m_size );
+	m_progress->setAlignment(Qt::AlignHCenter);
 	
 	QPixmap ico("/usr/share/app-install/icons/snakenet.png");
 	if( !ico.isNull() )
@@ -66,6 +67,7 @@ SnakeTray::SnakeTray() : KSystemTray( 0, "SnakeTray" ),
 	
 	contextMenu()->insertItem(SmallIconSet("configure"), tr("Settings"), this, SLOT(openSettings()));
 	contextMenu()->insertItem(SmallIconSet("info"), tr("About"), this, SLOT(about()));
+	contextMenu()->insertItem(SmallIconSet("player_play"), tr("Play stream"), this, SLOT(playStream()));
 	
 	m_disable_checkbox = new QCheckBox("Disabled",contextMenu());
 	contextMenu()->insertItem( m_disable_checkbox );
@@ -81,9 +83,12 @@ SnakeTray::SnakeTray() : KSystemTray( 0, "SnakeTray" ),
 	
 	connect( m_resync_timer, SIGNAL(timeout()),       this, SLOT(startParsing()) );
 
-	SnakeUpdateChecker* uc = new SnakeUpdateChecker(this,"http://snaketray.sourceforge.net/version.txt", SnakeTray::currentVersion() );
-	QTimer::singleShot( 60000, uc, SLOT(check()) );
-	
+	if( m_settings.checkForUpdates() )
+	{
+		SnakeUpdateChecker* uc = new SnakeUpdateChecker(this,"http://snaketray.sourceforge.net/version.txt", SnakeTray::currentVersion() );
+		QTimer::singleShot( 60000, uc, SLOT(check()) );
+	}
+
 	QTimer* timer = new QTimer();
 	connect( timer, SIGNAL(timeout()), this, SLOT(tick()) );
 	timer->start(1000);
@@ -112,11 +117,11 @@ void SnakeTray::findFont( const QString& test )
 	
 	QFont small("Helvetica",10);
 	QFontMetrics fm(small);
-	while( fm.width(test_f) > m_size )
+	while( (fm.width(test_f)+2) > m_size )
 	{
-		if(debug()) qDebug("Font: width = %i pointsize = %i",fm.width(test_f), small.pointSize());
 		small.setPointSize(small.pointSize()-1);
 		fm = QFontMetrics(small);
+		if(debug()) qDebug("Font: width = %i pointsize = %i target=%i",fm.width(test_f), small.pointSize(), m_size);
 		if(small.pointSize() < 4)
 			break;
 	}
@@ -321,9 +326,9 @@ void SnakeTray::disable(bool dis)
 	contextMenu()->close();
 }
 
-void SnakeTray::checkForUpdate()
+void SnakeTray::playStream()
 {
-	
+	system("kfmclient exec http://www.snakenetmetalradio.com/snakenet96.pls");
 }
 
 #include "snaketray.moc"

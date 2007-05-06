@@ -2,10 +2,10 @@ Todo:
 * Make rpm's
 * Make the deb use fewer dependencies
 * Can we display a faint snakelogo behind the seconds to not anonymize ourselfes ?
-* How do this work if you have not donated ?
 * Autostart
 
 Done:
+* How do this work if you have not donated ?
 * Setting to avoid display of seconds 
 * About dialog to display version
 * Disabling

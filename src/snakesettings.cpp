@@ -26,6 +26,7 @@ void SnakeSettings::readSettings()
 	m_secondsCB->setChecked(settings.readBoolEntry("/snaketray/seconds",true));
 	m_walletCB->setChecked(settings.readBoolEntry("/snaketray/wallet",true));
 	m_update_timer->setValue(settings.readNumEntry("/snaketray/update_timer",5));
+	m_updatesCB->setChecked(settings.readBoolEntry("/snaketray/updates",true));
 }
 
 void SnakeSettings::writeSettings()
@@ -36,4 +37,5 @@ void SnakeSettings::writeSettings()
 	settings.writeEntry("/snaketray/seconds",seconds());
 	settings.writeEntry("/snaketray/wallet",wallet());
 	settings.writeEntry("/snaketray/update_timer",updateInterval());
+	settings.writeEntry("/snaketray/updates",checkForUpdates());
 }
