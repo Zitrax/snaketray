@@ -1,10 +1,13 @@
 Todo:
+* Settings only need ok button
+* Reorder menu entries
 * Make rpm's
 * Make the deb use fewer dependencies
 * Can we display a faint snakelogo behind the seconds to not anonymize ourselfes ?
 * Autostart
 
 Done:
+* Can we launch the stream from a menu entry ?|
 * How do this work if you have not donated ?
 * Setting to avoid display of seconds 
 * About dialog to display version
