@@ -35,7 +35,7 @@
 /**
  * @short Application Main Window
  * @author Daniel Bengtsson <daniel@bengtssons.info>
- * @version 1.3
+ * @version 1.4
  *
  * This is the class that shows up in the tray as a small icon.
  * It will be filled with the remaining minutes that will count
@@ -55,7 +55,7 @@ class SnakeTray : public KSystemTray
 		static SnakeTray* create() 
 		{ if(!s_instance) new SnakeTray(); return s_instance; }
 
-		static QString currentVersion() { return "1.3"; }
+		static QString currentVersion() { return "1.4"; }
 	
 		bool screenSaverOn();
 	

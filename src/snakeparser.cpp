@@ -141,6 +141,27 @@ void SnakeParser::parseData()
 			m_relogin = true;
 			login( m_user, m_pass );
 		}
+		else if( m_relogin )
+		{
+			if(SnakeTray::debug()) qDebug("Relogin failed, giving up.");
+			m_relogin = false; m_pass = QString::null; m_user = QString::null;
+			emit loginAborted();
+			// If we use wallet and have wallet information the user might want to clear it
+			if( SnakeTray::settings().wallet() )
+			{
+				KWallet::Wallet* wallet = KWallet::Wallet::openWallet( "kdewallet" );
+				if( wallet && wallet->setFolder("SnakeTray") )
+				{
+					if( KMessageBox::warningYesNo(0,"Snaketray Error - Could not login (You can click the tray icon to try again). You have wallet information stored for SnakeTray, do you want to delete it?","Login Error") == KMessageBox::Yes )
+					{
+						wallet->removeEntry("User");
+						wallet->removeEntry("Pass");
+					}
+				}
+			}
+			else
+				KMessageBox::error(0,"Snaketray Error - Could not login (You can click the tray icon to try again)","Login Error");
+		}
 		else
 		{
 			m_relogin = false; m_pass = QString::null; m_user = QString::null;

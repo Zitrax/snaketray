@@ -65,13 +65,14 @@ SnakeTray::SnakeTray() : KSystemTray( 0, "SnakeTray" ),
 	if( !ico.isNull() )
 		contextMenu()->changeTitle(contextMenu()->idAt(0), ico, "SnakeTray");
 	
-	contextMenu()->insertItem(SmallIconSet("configure"), tr("Settings"), this, SLOT(openSettings()));
-	contextMenu()->insertItem(SmallIconSet("info"), tr("About"), this, SLOT(about()));
 	contextMenu()->insertItem(SmallIconSet("player_play"), tr("Play stream"), this, SLOT(playStream()));
 	
 	m_disable_action = new KToggleAction( tr("Disable"), 0, 0, 0, contextMenu(), "Disable");
 	connect( m_disable_action, SIGNAL( toggled(bool) ), this, SLOT( disable(bool) ));
 	m_disable_action->plug(contextMenu());
+
+	contextMenu()->insertItem(SmallIconSet("configure"), tr("Settings"), this, SLOT(openSettings()));
+	contextMenu()->insertItem(SmallIconSet("info"), tr("About"), this, SLOT(about()));
 	
 	QToolTip::add( m_progress, tr("Left-click to resync the timer with the server.") );
 	QToolTip::add( this,       tr("Left-click to resync the timer with the server.") );
