@@ -2,7 +2,7 @@ Some basic things you need to compile:
 
 * autoconf
 * automake 1.7 or higher
-* kubuntu so not have proper libkio symlink
+* kubuntu do not have a proper libkio symlink (configure: error: C compiler cannot create executables)
   so you need to 'sudo ln -s /usr/lib/libkio.so.4.2.0 /usr/lib/libkio.so'
 * qt3 headers (libqt3-mt-dev package on kubuntu)
 * kde headers (kdebase-dev)

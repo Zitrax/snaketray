@@ -12,7 +12,7 @@
 #ifndef SNAKELOGINDIALOG_H
 #define SNAKELOGINDIALOG_H
 
-#include <login_dialog.h>
+#include "login_dialog.h"
 
 /**
  * @author Daniel Bengtsson

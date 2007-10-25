@@ -12,7 +12,7 @@
 #ifndef SNAKESETTINGS_H
 #define SNAKESETTINGS_H
 
-#include <settings.h>
+#include "settings.h"
 
 #include <qsettings.h>
 #include <qcheckbox.h>
