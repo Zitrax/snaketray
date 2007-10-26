@@ -1,0 +1,8 @@
+[Desktop Entry]
+Encoding=UTF-8
+Name=SnakeTray
+GenericName=Request countdown
+Exec=snaketray
+Icon=snaketray.png
+Terminal=false
+Categories=Qt;KDE;Network;
