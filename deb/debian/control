@@ -5,9 +5,10 @@ Priority: optional
 Standards-Version: 3.7.2.2
 
 Package: snaketray
-Architecture: all
+Architecture: i386
 Section: base
 Priority: optional
+Depends: ${shlibs:Depends}
 Description: SnakenetMetalRadio request countdown as a KDE tray application.
  The tray icon will display number of minutes left until you can
  request or the snakenet logo if you are ready to request. You need
