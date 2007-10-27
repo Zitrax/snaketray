@@ -12,18 +12,10 @@ binary: clean
 		-d debian/tmp/usr/share/doc/$(PACKAGE) \
 		-d debian/tmp/usr/share/man/man1 \
 		-d debian/tmp/usr/share/icons/default.kde/16x16/apps 
-# 		-d debian/tmp/usr/share/icons/hicolor/16x16/apps \
-# 		-d debian/tmp/usr/share/icons/hicolor/22x22/apps \
-# 		-d debian/tmp/usr/share/icons/hicolor/32x32/apps \
-# 		-d debian/tmp/usr/share/icons/hicolor/48x48/apps
 	@ cp -v ../src/$(PACKAGE) debian/tmp/usr/bin
 	strip -s debian/tmp/usr/bin/$(PACKAGE)
 	@ cp -v debian/usr/share/app-install/icons/snakenet.png debian/tmp/usr/share/app-install/icons
 	@ cp -v debian/usr/share/app-install/icons/snakenet.png debian/tmp/usr/share/icons/default.kde/16x16/apps/
-# 	@ cp -v debian/usr/share/app-install/icons/snakenet.png debian/tmp/usr/share/icons/hicolor/16x16/apps/
-# 	@ cp -v debian/usr/share/app-install/icons/snakenet.png debian/tmp/usr/share/icons/hicolor/22x22/apps/
-# 	@ cp -v debian/usr/share/app-install/icons/snakenet.png debian/tmp/usr/share/icons/hicolor/32x32/apps/
-# 	@ cp -v debian/usr/share/app-install/icons/snakenet.png debian/tmp/usr/share/icons/hicolor/48x48/apps/
 	@ cp -v debian/usr/share/app-install/icons/snakenet_anim.gif debian/tmp/usr/share/app-install/icons
 	@ cp -v debian/usr/share/applications/$(PACKAGE).desktop debian/tmp/usr/share/applications
 	@ cp -v debian/changelog debian/tmp/usr/share/doc/$(PACKAGE)/
