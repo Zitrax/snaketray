@@ -1,0 +1,20 @@
+=head1 NAME
+
+snaketray - SnakenetMetalRadio request countdown as a KDE tray application.
+
+=head1 SYNOPSIS
+
+snaketray
+
+=head1 DESCRIPTION
+
+The tray icon will display number of minutes left until you can
+request or the snakenet logo if you are ready to request. You need
+an account which can be created at www.snakenetmetalradio.com.
+Login information will be stored in KWallet.
+
+http://snaketray.sourceforge.net/
+
+=head1 AUTHOR
+
+Daniel Bengtsson <daniel@bengtssons.info> 2006-2007

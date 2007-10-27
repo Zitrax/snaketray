@@ -1,17 +1,37 @@
 #!/usr/bin/make -f
 
+PACKAGE=snaketray
+
 build:
 
 binary: clean
 	@ install -v -d debian/tmp/DEBIAN \
 		-d debian/tmp/usr/bin \
 		-d debian/tmp/usr/share/app-install/icons \
-		-d debian/tmp/usr/share/applications
-	@ cp -v ../src/snaketray debian/tmp/usr/bin
+		-d debian/tmp/usr/share/applications \
+		-d debian/tmp/usr/share/doc/$(PACKAGE) \
+		-d debian/tmp/usr/share/man/man1 \
+		-d debian/tmp/usr/share/icons/default.kde/16x16/apps 
+# 		-d debian/tmp/usr/share/icons/hicolor/16x16/apps \
+# 		-d debian/tmp/usr/share/icons/hicolor/22x22/apps \
+# 		-d debian/tmp/usr/share/icons/hicolor/32x32/apps \
+# 		-d debian/tmp/usr/share/icons/hicolor/48x48/apps
+	@ cp -v ../src/$(PACKAGE) debian/tmp/usr/bin
+	strip -s debian/tmp/usr/bin/$(PACKAGE)
 	@ cp -v debian/usr/share/app-install/icons/snakenet.png debian/tmp/usr/share/app-install/icons
+	@ cp -v debian/usr/share/app-install/icons/snakenet.png debian/tmp/usr/share/icons/default.kde/16x16/apps/
+# 	@ cp -v debian/usr/share/app-install/icons/snakenet.png debian/tmp/usr/share/icons/hicolor/16x16/apps/
+# 	@ cp -v debian/usr/share/app-install/icons/snakenet.png debian/tmp/usr/share/icons/hicolor/22x22/apps/
+# 	@ cp -v debian/usr/share/app-install/icons/snakenet.png debian/tmp/usr/share/icons/hicolor/32x32/apps/
+# 	@ cp -v debian/usr/share/app-install/icons/snakenet.png debian/tmp/usr/share/icons/hicolor/48x48/apps/
 	@ cp -v debian/usr/share/app-install/icons/snakenet_anim.gif debian/tmp/usr/share/app-install/icons
-	@ cp -v debian/usr/share/applications/snaketray.desktop debian/tmp/usr/share/applications
-	dpkg-shlibdeps debian/tmp/usr/bin/snaketray
+	@ cp -v debian/usr/share/applications/$(PACKAGE).desktop debian/tmp/usr/share/applications
+	@ cp -v debian/changelog debian/tmp/usr/share/doc/$(PACKAGE)/
+	gzip -9 debian/tmp/usr/share/doc/$(PACKAGE)/changelog
+	@ cp -v debian/copyright debian/tmp/usr/share/doc/$(PACKAGE)/
+	pod2man debian/usr/share/man/snaketray.pod > debian/tmp/usr/share/man/man1/snaketray.1
+	gzip -9 debian/tmp/usr/share/man/man1/snaketray.1
+	dpkg-shlibdeps debian/tmp/usr/bin/$(PACKAGE)
 	dpkg-gencontrol
 	chown -R root.root debian/tmp
 	dpkg --build debian/tmp .

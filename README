@@ -7,5 +7,16 @@ Some basic things you need to compile:
 * qt3 headers (libqt3-mt-dev package on kubuntu)
 * kde headers (kdebase-dev)
 
-Good tuturial about how to create debian package:
+Good pages about how to create debian packages:
 * http://tldp.org/HOWTO/html_single/Debian-Binary-Package-Building-HOWTO/
+* http://people.debian.org/~walters/descriptions.html
+* http://www.debian.org/doc/debian-policy/ap-pkg-sourcepkg.html#s-pkg-dpkg-shlibdeps
+* http://doc.ubuntu.com/ubuntu/packagingguide/C/ubuntu-kubuntu.html
+* http://people.debian.org/~walters/descriptions.html
+
+Creating the package:
+
+0. Make sure you have build the binary of course :)
+1. Update deb/debian/changelog (latest entry determines version number)
+2. Enter the deb directory and run make
+
