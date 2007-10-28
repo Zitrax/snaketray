@@ -39,6 +39,9 @@ class SnakeSettings : public Settings
 		int updateInterval() const {return m_update_timer->value();}
 		bool checkForUpdates() const { return m_updatesCB->isChecked();}
 	
+	protected:
+		void showEvent( QShowEvent* se ) { readSettings(); Settings::showEvent(se); }
+
 	protected slots:
 
 		void accept(){ writeSettings(); Settings::accept();}
@@ -46,6 +49,10 @@ class SnakeSettings : public Settings
 	private:
 		void readSettings();
 		void writeSettings();
+		bool getAutostart() const;
+		void setAutostart(bool enable);
+		QString autostartFile() const;
+		
 };
 
 #endif
