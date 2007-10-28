@@ -1,11 +1,11 @@
 Todo:
-* Settings only need ok button
 * Make rpm's
 * Can we display a faint snakelogo behind the seconds to not anonymize ourselfes ?
 * Autostart
-* Install in kde's main menu
 
 Done:
+* Settings only need ok button
+* Install in kde's main menu
 * Make the deb use fewer dependencies
 * Reorder menu entries
 * Can we launch the stream from a menu entry ?|
