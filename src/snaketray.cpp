@@ -34,6 +34,8 @@
 #include <klocale.h>
 #include <kpopupmenu.h>
 #include <kiconloader.h>
+#include <khtml_part.h>
+#include <khtmlview.h>
 
 SnakeTray* SnakeTray::s_instance = 0;
 
@@ -66,7 +68,8 @@ SnakeTray::SnakeTray() : KSystemTray( 0, "SnakeTray" ),
 		contextMenu()->changeTitle(contextMenu()->idAt(0), ico, "SnakeTray");
 	
 	contextMenu()->insertItem(SmallIconSet("player_play"), tr("Play stream"), this, SLOT(playStream()));
-	
+	contextMenu()->insertItem(SmallIconSet("html"), tr("Display queue"), this, SLOT(displayQueue()));	
+
 	m_disable_action = new KToggleAction( tr("Disable"), 0, 0, 0, contextMenu(), "Disable");
 	connect( m_disable_action, SIGNAL( toggled(bool) ), this, SLOT( disable(bool) ));
 	m_disable_action->plug(contextMenu());
@@ -330,6 +333,21 @@ void SnakeTray::disable(bool dis)
 void SnakeTray::playStream()
 {
 	system("kfmclient exec http://www.snakenetmetalradio.com/snakenet96.pls");
+}
+
+void SnakeTray::displayQueue()
+{
+	KURL url = "http://www.snakenetmetalradio.com/heavymetallounge/requests/RequestQueue.asp";
+ 	KHTMLPart* w = new KHTMLPart();
+	// Required such that we can click links
+	connect(w->browserExtension(), SIGNAL(openURLRequest(const KURL &,const KParts::URLArgs &)),
+		w,                     SLOT(openURL(const KURL &)));
+	w->begin();
+	w->write("<html><body><p>Loading Queue...</p></body></html>");
+	w->end();
+	w->view()->resize(500, 400);
+	w->show();
+	w->openURL(url);
 }
 
 #include "snaketray.moc"

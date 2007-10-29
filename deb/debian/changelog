@@ -6,6 +6,7 @@ snaketray (1.4) unstable;
   * Reordered menu entries
   * Added files for making it easier to create a debian package
   * Things required for a proper debian package (man page, copyright, changelog)
+  * Menu entry for displaying request queue
  -- Daniel Bengtsson <daniel@bengtssons.info>  Sun, 28 Oct 2007 02:20:33 +0200
 
 snaketray (1.3) unstable;

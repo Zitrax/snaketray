@@ -79,6 +79,7 @@ class SnakeTray : public KSystemTray
 		void about();
 		void disable(bool dis);
 		void playStream();
+		void displayQueue();
  
 	private:
 	
