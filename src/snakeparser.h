@@ -64,7 +64,7 @@ class SnakeParser : public QObject
 		 */
 		void jobData( KIO::Job* job, const QByteArray& data );
 	
-         	/**
+		/**
 		 * Will try to login to snakenet using...
 		 * @param user The username
 		 * @param pass The password
@@ -72,48 +72,48 @@ class SnakeParser : public QObject
 		void login(const QString& user, const QString& pass);
 		
 	private:
-	        /**
-	         * Will parse the data that arrived in the jobData() slot.
-	         * If it is the requestpage the remaining minutes will be parsed.
+		/**
+		 * Will parse the data that arrived in the jobData() slot.
+		 * If it is the requestpage the remaining minutes will be parsed.
 		 */
 		void parseData();
 		/**
 		 * Properly report a job error
 		 */
 		void jobError( KIO::Job& job );
-         	/**
+		/**
 		 * Will popup a dialog with fields for username and password 
 		 * where you are asked to login.
 		 */
 		void login();
 		
-        	/// The received data. (Hopefully the requestpage)
+		/// The received data. (Hopefully the requestpage)
 		QString m_snakepage;
-        	/// Keeps track of if we just tried to login
+		/// Keeps track of if we just tried to login
 		bool m_login_tried;
-        	/// True if we are currently parsing
+		/// True if we are currently parsing
 		bool m_parsing;
-        	/// last username used
+		/// last username used
 		QString m_user;
-	        /// last pass
+		/// last pass
 		QString m_pass;
-	        /// Indicator if we have tried to reglogin with old data
+		/// Indicator if we have tried to reglogin with old data
 		bool m_relogin;
 	signals:
-               /** 
-	        * This signal will be sent when the parser has 
-	        * retrieved a value for the time to next request.
-		*/
+		/** 
+		 * This signal will be sent when the parser has 
+		 * retrieved a value for the time to next request.
+		 */
 		void timeLeftReceived(int);
 		
-	       /**
-		* Emitted if there is unknown content parsed. 
-		*/
+		/**
+		 * Emitted if there is unknown content parsed. 
+		 */
 		void unknownContent();
 
-               /**
-		* Emitted after we have tried to login.
-		*/
+		/**
+		 * Emitted after we have tried to login.
+		 */
 		void loginTried();
 		
 		/**

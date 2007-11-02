@@ -27,6 +27,7 @@
 
 #include <kactionclasses.h>
 #include <ksystemtray.h>
+#include <khtml_part.h>
 #include <qlabel.h>
 
 #include "snakeparser.h"
@@ -73,6 +74,7 @@ class SnakeTray : public KSystemTray
 		void updateTimer(int minutes);
 		void readyToRequest();
 		void notLoggedIn();
+		void loginTried();
 		void tick();	
 		void openSettings();
 		void unknownContent();
@@ -80,6 +82,7 @@ class SnakeTray : public KSystemTray
 		void disable(bool dis);
 		void playStream();
 		void displayQueue();
+		void displayQueueAndLogin(const QString& url);
  
 	private:
 	
@@ -110,6 +113,8 @@ class SnakeTray : public KSystemTray
 		bool m_ready; // true if we are ready to request
 		bool m_parsing; // currently parsing
 		bool m_first_parse; // true until we have started the first parse
+		bool m_display_queue; // if true we want do display the queue after logging in
+		QGuardedPtr<KHTMLPart> m_queue_window; // html view with the request queue
 
 		int m_update_timer;
 

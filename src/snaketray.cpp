@@ -34,7 +34,6 @@
 #include <klocale.h>
 #include <kpopupmenu.h>
 #include <kiconloader.h>
-#include <khtml_part.h>
 #include <khtmlview.h>
 
 SnakeTray* SnakeTray::s_instance = 0;
@@ -50,6 +49,8 @@ SnakeTray::SnakeTray() : KSystemTray( 0, "SnakeTray" ),
       m_ready(false),
       m_parsing(false),
       m_first_parse(true),
+      m_display_queue(false),
+      m_queue_window(0),
       m_size(24)
 {
 	qWarning( "Starting SnakeTray" );
@@ -80,8 +81,8 @@ SnakeTray::SnakeTray() : KSystemTray( 0, "SnakeTray" ),
 	QToolTip::add( m_progress, tr("Left-click to resync the timer with the server.") );
 	QToolTip::add( this,       tr("Left-click to resync the timer with the server.") );
 
-	connect( m_parser, SIGNAL(timeLeftReceived(int)), this, SLOT(updateTimer(int) ) );
-	connect( m_parser, SIGNAL(loginTried()),          this, SLOT(startParsing()) );
+	connect( m_parser, SIGNAL(timeLeftReceived(int)), this, SLOT(updateTimer(int)) );
+	connect( m_parser, SIGNAL(loginTried()),          this, SLOT(loginTried()) );
 	connect( m_parser, SIGNAL(loginAborted()),        this, SLOT(notLoggedIn()) );
 	connect( m_parser, SIGNAL(unknownContent()),      this, SLOT(unknownContent()) );
 	
@@ -104,6 +105,13 @@ SnakeTray::~ SnakeTray()
 {
 	s_instance = 0;
 	delete m_time;
+}
+
+void SnakeTray::loginTried()
+{
+	if( m_display_queue )
+		displayQueue();
+	startParsing();
 }
 
 void SnakeTray::findFont( const QString& test )
@@ -251,6 +259,7 @@ void SnakeTray::readyToRequest()
 
 void SnakeTray::notLoggedIn()
 {
+	m_display_queue = false;
 	m_ready = false;
 	m_resync_timer->stop();
 	QPixmap ico("/usr/share/app-install/icons/snakenet.png");
@@ -273,6 +282,7 @@ void SnakeTray::unknownContent()
 	if(debug()) qDebug("Setting unknown content");
 	m_progress->setText(tr("ERR"));
 	m_progress->show();
+	m_display_queue = false;
 }
 
 void SnakeTray::mousePressEvent(QMouseEvent* me)
@@ -335,19 +345,44 @@ void SnakeTray::playStream()
 	system("kfmclient exec http://www.snakenetmetalradio.com/snakenet96.pls");
 }
 
+void SnakeTray::displayQueueAndLogin(const QString& url)
+{
+	if(debug()) qDebug("DisplayQueue: url is %s",url.latin1());
+	if( url == "http://www.snakenetmetalradio.com/heavymetallounge/login.asp" )
+	{
+		if( m_queue_window )
+		{
+			m_queue_window->closeURL();
+			m_queue_window->begin();
+			m_queue_window->write("<html><body><p>Logging in and loading queue...</p></body></html>");
+			m_queue_window->end();
+		}
+		m_display_queue = true;
+		startParsing();
+	}
+}
+
 void SnakeTray::displayQueue()
 {
+	if(debug()) qDebug("DisplayQueue");
+	m_display_queue = false;
 	KURL url = "http://www.snakenetmetalradio.com/heavymetallounge/requests/RequestQueue.asp";
- 	KHTMLPart* w = new KHTMLPart();
-	// Required such that we can click links
-	connect(w->browserExtension(), SIGNAL(openURLRequest(const KURL &,const KParts::URLArgs &)),
-		w,                     SLOT(openURL(const KURL &)));
-	w->begin();
-	w->write("<html><body><p>Loading Queue...</p></body></html>");
-	w->end();
-	w->view()->resize(500, 400);
-	w->show();
-	w->openURL(url);
+	if( !m_queue_window )
+	{
+		// This is a guarded pointer so we do not need to care about whether it's being deleted.
+ 		m_queue_window = new KHTMLPart();
+		// Required such that we can click links
+		connect(m_queue_window->browserExtension(), SIGNAL(openURLRequest(const KURL &,const KParts::URLArgs &)),
+			m_queue_window,                     SLOT(openURL(const KURL &)));
+		connect(m_queue_window->browserExtension(), SIGNAL(setLocationBarURL(const QString&)),
+			this,                               SLOT(displayQueueAndLogin(const QString&)));
+	}
+	m_queue_window->begin();
+	m_queue_window->write("<html><body><p>Loading Queue...</p></body></html>");
+	m_queue_window->end();
+	m_queue_window->view()->resize(500, 400);
+	m_queue_window->show();
+	m_queue_window->openURL(url);
 }
 
 #include "snaketray.moc"
