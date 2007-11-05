@@ -28,7 +28,7 @@ void SnakeSettings::readSettings()
 	QSettings settings(QSettings::Ini);
 	settings.setPath("sourceforge.net/projects/snaketray/","snaketray");
 	m_debugCB->setChecked(settings.readBoolEntry("/snaketray/debug",false));
-	m_secondsCB->setChecked(settings.readBoolEntry("/snaketray/seconds",true));
+	m_secondsCB->setChecked(settings.readBoolEntry("/snaketray/seconds",false));
 	m_walletCB->setChecked(settings.readBoolEntry("/snaketray/wallet",true));
 	m_update_timer->setValue(settings.readNumEntry("/snaketray/update_timer",5));
 	m_updatesCB->setChecked(settings.readBoolEntry("/snaketray/updates",true));
