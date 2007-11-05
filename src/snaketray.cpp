@@ -24,6 +24,7 @@
 
 #include <qlabel.h>
 #include <qtimer.h>
+#include <qfile.h>
 #include <qfont.h>
 #include <qpixmap.h>
 #include <qregexp.h>
@@ -162,8 +163,9 @@ void SnakeTray::startParsing()
 	
 	m_ready = false;
 	
-	QMovie mov("/usr/share/app-install/icons/snakenet_anim.gif");
-	if( !mov.isNull() )
+	QString anim = "/usr/share/app-install/icons/snakenet_anim.gif";
+	QMovie mov(anim);
+	if( QFile::exists(anim) && !mov.isNull() )
 	{
 		m_progress->hide();
 		setMovie( mov );
