@@ -1,9 +1,10 @@
 Todo:
-* Make rpm's
 * Can we display a faint snakelogo behind the seconds to not anonymize ourselfes ?
-* Autostart
+* Make sure to make a resync shortly after a vote link is clicked in the queue
 
 Done:
+* Make rpm's
+* Autostart
 * Settings only need ok button
 * Install in kde's main menu
 * Make the deb use fewer dependencies
